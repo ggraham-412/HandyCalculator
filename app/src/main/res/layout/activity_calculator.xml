@@ -81,8 +81,6 @@
 
         </RelativeLayout>
 
-
-
         <LinearLayout
             style="@style/HandyCalculatorButtonRowStyle" >
 

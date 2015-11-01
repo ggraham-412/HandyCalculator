@@ -1,5 +1,8 @@
 package com.widgetmath.handycalculator;
 
+import com.widgetmath.handycalculator.calculator.HandyCalculator;
+import com.widgetmath.handycalculator.calculator.ICalculator;
+import com.widgetmath.handycalculator.calculator.IHandyCalculator;
 import com.widgetmath.handycalculator.utils.DisplayEntry;
 import com.widgetmath.handycalculator.utils.INumberEntry;
 import com.widgetmath.handycalculator.utils.NumberEntry_Wrapper;
@@ -20,7 +23,7 @@ import java.math.BigDecimal;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class Calculator extends AppCompatActivity {
+public class CalculatorActivity extends AppCompatActivity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -83,18 +86,7 @@ public class Calculator extends AppCompatActivity {
 
     private boolean m_toolsVisible = false;
 
-    private INumberEntry m_accumulator = new NumberEntry_Wrapper();
-    private INumberEntry m_numberEntry = new NumberEntry_Wrapper();
-    private DisplayMode m_displayMode = DisplayMode.ENTRY;
-    private FracMode m_displayBase = FracMode.DECIMAL;
-    private ButtonCode m_pendingOp = ButtonCode.NULL;
-    private INumberEntry m_memoryValue = new NumberEntry_Wrapper(BigDecimal.ZERO, 0);
-
-    private boolean m_isNan = false;
-    private boolean m_isOE = false;
-    private boolean m_isUE = false;
-
-    private boolean m_dispPending = false;
+    private ICalculator m_calculator;
 
     private void findAndInitializeUI() {
         m_button0 = initButton(R.id.button0, ButtonCode.ZERO);
@@ -151,207 +143,14 @@ public class Calculator extends AppCompatActivity {
         return b;
     }
 
-    private boolean isNumericError() {
-        return m_isNan || m_isOE || m_isUE;
-    }
 
-    private void HandleMemoryOp(ButtonCode code) {
-        switch (code){
-            case MEMORY_RECALL:
-                m_numberEntry.setValue(m_memoryValue);
-                m_displayMode = DisplayMode.ENTRY;
-                break;
-            case MEMORY_SAVE:
-                if ( isNumericError() ) return;
-                if ( m_displayMode == DisplayMode.ACCUMULATOR ) {
-                    m_memoryValue.setValue(m_accumulator);
-                } else {
-                    m_memoryValue.setValue(m_numberEntry);
-                }
-                break;
-        }
-    }
-
-    private void HandleNumberInput(ButtonCode code) {
-        if ( isNumericError() ) return;
-        m_numberEntry.addDigit(code.getValue());
-        m_displayMode = DisplayMode.ENTRY;
-    }
-
-    private void HandleOperator(ButtonCode code) {
-        if ( isNumericError() ) return;
-        HandlePendingOp();
-        m_pendingOp = code;
-    }
-
-    private void HandleChangeSign(ButtonCode code) {
-        if ( isNumericError() ) return;
-        if ( m_displayMode == DisplayMode.ACCUMULATOR ) {
-            m_accumulator.negate();
-        }
-        else {
-            m_numberEntry.negate();
-        }
-    }
-
-    private void HandlePendingOp() {
-        if ( isNumericError() ) return;
-        if ( m_pendingOp == ButtonCode.NULL ) {
-            m_accumulator.setValue(m_numberEntry.getValue(), m_displayBase.getBase());
-        } else {
-            switch (m_pendingOp) {
-                case ADD:
-                    m_accumulator.setValue(m_accumulator.getValue().add(m_numberEntry.getValue()),
-                            m_displayBase.getBase());
-                    break;
-                case SUBTRACT:
-                    m_accumulator.setValue(m_accumulator.getValue().subtract(m_numberEntry.getValue()),
-                            m_displayBase.getBase());
-                    break;
-                case MULTIPLY:
-                    m_accumulator.setValue(m_accumulator.getValue().multiply(m_numberEntry.getValue()),
-                            m_displayBase.getBase());
-                    break;
-                case DIVIDE:
-                    BigDecimal operand = m_numberEntry.getValue();
-                    if ( operand.compareTo(BigDecimal.ZERO) == 0) {
-                        m_isNan = true;
-                    }
-                    else {
-                        m_accumulator.setValue(m_accumulator.getValue().divide(m_numberEntry.getValue(), 16, BigDecimal.ROUND_HALF_EVEN),
-                                m_displayBase.getBase());
-                    }
-                    break;
-            }
-        }
-        m_displayMode = DisplayMode.ACCUMULATOR;
-        m_numberEntry.clear();
-    }
-
-    private void HandleAdmin(ButtonCode code) {
-        switch (code) {
-            case CLEAR:
-                m_numberEntry.clear();
-                m_accumulator.clear();
-                m_pendingOp = ButtonCode.NULL;
-                m_displayMode = DisplayMode.ACCUMULATOR;
-                m_isUE = false;
-                m_isOE = false;
-                m_isNan = false;
-                break;
-            case CLEAR_ENTRY:
-                if ( isNumericError() ) return;
-                m_numberEntry.clear();
-                if ( m_displayMode == DisplayMode.ACCUMULATOR ) {
-                    m_accumulator.clear();
-                    m_pendingOp = ButtonCode.NULL;
-                }
-                break;
-            case EQUALS:
-                if ( isNumericError() ) return;
-                HandlePendingOp();
-                m_displayMode = DisplayMode.ACCUMULATOR;
-                m_pendingOp = ButtonCode.NULL;
-        }
-        m_numberEntry.clear();
-    }
-
-    private void HandleDecimator(ButtonCode code) {
-        switch (m_displayMode) {
-            case ACCUMULATOR:
-                if ( !m_numberEntry.isDotPushed() ) {
-                    m_numberEntry.pushDot(code.getValue());
-                    m_displayMode = DisplayMode.ENTRY;
-                }
-                break;
-            case ENTRY:
-                if ( !m_numberEntry.isDotPushed() ) m_numberEntry.pushDot(code.getValue());
-                break;
-        }
-
-    }
-
-    private boolean HandleDispPending(ButtonCode code) {
-        switch(code) {
-            case DEC_DECIMAL:
-            case DEC_HALF:
-            case DEC_FOURTH:
-            case DEC_EIGHTH:
-            case DEC_SIXTEENTH:
-            case DEC_THIRTYSECOND:
-            case DEC_SIXTYFOURTH:
-                m_displayBase = FracMode.getFracMode(code.getValue());
-                return true;
-            default:
-                return false;
-        }
-    }
 
     private void dispatchButtonPush(View v) {
 
         ButtonCode code = (ButtonCode)v.getTag();
-
-        if ( m_dispPending ) {
-            if ( HandleDispPending(code) ) {
-                m_dispPending = false;
-                DoDisplay();
-            }
-            return;
-        }
-
-        switch(code) {
-            case DISPLAY:
-                m_dispPending = true;
-                break;
-
-            case ZERO:
-            case ONE:
-            case TWO:
-            case THREE:
-            case FOUR:
-            case FIVE:
-            case SIX:
-            case SEVEN:
-            case EIGHT:
-            case NINE:
-                HandleNumberInput(code);
-                break;
-
-            case ADD:
-            case SUBTRACT:
-            case MULTIPLY:
-            case DIVIDE:
-                HandleOperator(code);
-                break;
-
-            case CHANGE_SIGN:
-                HandleChangeSign(code);
-                break;
-
-            case MEMORY_RECALL:
-            case MEMORY_SAVE:
-                HandleMemoryOp(code);
-                break;
-
-            case DEC_DECIMAL:
-            case DEC_HALF:
-            case DEC_FOURTH:
-            case DEC_EIGHTH:
-            case DEC_SIXTEENTH:
-            case DEC_THIRTYSECOND:
-            case DEC_SIXTYFOURTH:
-                HandleDecimator(code);
-                break;
-
-            case EQUALS:
-            case CLEAR:
-            case CLEAR_ENTRY:
-                HandleAdmin(code);
-                break;
-        }
+        m_calculator.HandleInput(code);
 
         DoDisplay();
-
     }
 
     private void DisplayError(String code) {
@@ -360,40 +159,43 @@ public class Calculator extends AppCompatActivity {
     }
 
     private void DisplayNumber(INumberEntry toDisplay) {
-        if ( m_isNan ) {
+        if ( m_calculator.isNAN() ) {
             DisplayError("NaN");
             return;
         }
-        if ( m_isOE ) {
+        if ( m_calculator.isOE() ) {
             DisplayError("OE");
             return;
         }
-        if ( m_isUE ) {
+        if ( m_calculator.isUE() ) {
             DisplayError("UE");
             return;
         }
-        m_txtDisplayMain.setText(DisplayEntry.getMainDisplay(toDisplay, m_displayMode));
-        m_txtDisplayRemainder.setText(DisplayEntry.getRemainderDisplay(toDisplay, m_displayMode));
+        m_txtDisplayMain.setText(DisplayEntry.getMainDisplay(toDisplay, m_calculator.getDisplayMode()));
+        m_txtDisplayRemainder.setText(DisplayEntry.getRemainderDisplay(toDisplay, m_calculator.getDisplayMode()));
     }
 
     private void DoDisplay() {
 
-        if ( m_displayMode == DisplayMode.ACCUMULATOR ) {
-            m_accumulator.setValue(m_accumulator.getValue(), m_displayBase.getBase());
-            DisplayNumber(m_accumulator);
+        IHandyCalculator hcalc = (IHandyCalculator)m_calculator;
+
+        if ( m_calculator.getDisplayMode() == DisplayMode.ACCUMULATOR ) {
+            INumberEntry acc = hcalc.getAccumulator();
+            acc.setValue(acc.getValue(), acc.getBase());
+            DisplayNumber(acc);
         }
         else {
-            DisplayNumber(m_numberEntry);
+            DisplayNumber(hcalc.getEntry());
         }
 
-        m_txtDisplayBase.setText(m_displayBase.toString());
-        m_txtDisplayMode.setText(m_displayMode.toString());
-        m_txtDisplayOp.setText(m_pendingOp.toString());
+        m_txtDisplayBase.setText(hcalc.getDisplayBase().toString());
+        m_txtDisplayMode.setText(hcalc.getDisplayMode().toString());
+        m_txtDisplayOp.setText(hcalc.getPendingOp().toString());
 
-        m_txtAccum.setText(m_accumulator.getValue().toPlainString());
-        m_txtEntry.setText(m_numberEntry.getValue().toPlainString());
+        m_txtAccum.setText(hcalc.getAccumulator().getValue().toPlainString());
+        m_txtEntry.setText(hcalc.getEntry().getValue().toPlainString());
 
-        if (m_memoryValue.getValue().compareTo(BigDecimal.ZERO)!=0) {
+        if (hcalc.getMemory().getValue().compareTo(BigDecimal.ZERO)!=0) {
             m_txtDisplayMem.setText("M");
         }
         else {
@@ -411,6 +213,8 @@ public class Calculator extends AppCompatActivity {
         setContentView(R.layout.activity_calculator);
 
         findAndInitializeUI();
+
+        m_calculator = new HandyCalculator();
 
         // Set up the user interaction to manually show or hide the system UI.
         m_mainLayout.setOnClickListener(new View.OnClickListener() {
