@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
 
-    <color name="black_overlay">#66000000</color>
+    <!-- From http://www.visibone.com/colorlab/ -->
+    <color name="DarkYellowOrangeL">#D4A100</color>
+    <color name="DarkYellowOrange">#CC9900</color>
+    <color name="DarkYellowOrangeD">#C49100</color>
+    <color name="MediumFadedYellow">#CCCC33</color>
+    <color name="DarkHardAzureL">#006ED4</color>
+    <color name="DarkHardAzure">#0066CC</color>
+    <color name="DarkHardAzureD">#005EC4</color>
+    <color name="LightCyanAzure">#33CCFF</color>
+    <color name="LightHardRedL">#FF3B3B</color>
+    <color name="LightHardRed">#FF3333</color>
+    <color name="LightHardRedD">#F72B2B</color>
+    <color name="PaleDullRed">#FF9999</color>
+    <color name="PaleDullCyan">#99FFFF</color>
+    <color name="ObscureDullOrangeL">#6E3B08</color>
+    <color name="ObscureDullOrange">#663300</color>
+    <color name="ObscureDullOrangeD">#5E2B00</color>
+    <color name="LightHardOrange">#FF9933</color>
+    <color name="MediumOrangeRedL">#D66E3B</color>
+    <color name="MediumOrangeRed">#CC6633</color>
+    <color name="MediumOrangeRedD">#C45E2B</color>
 
-    <color name="yellow1">#F9E60E</color>
-    <color name="yellow2">#F9F89D</color>
-    <color name="orange4">#F7BE45</color>
-    <color name="orange5">#F7D896</color>
-    <color name="blue2">#19FCDA</color>
-    <color name="blue25">#D9F7F2</color>
-    <color name="grey05">#888888</color>
-    <color name="white1">#FFFFFF</color>
-    <color name="white2">#DDDDDD</color>
-    <color name="grey1">#CCCCCC</color>
-    <color name="grey2">#AAAAAA</color>
+    <!-- Custom -->
+    <color name="WhiteF">#FFFFFF</color>
+    <color name="WhiteE">#EEEEEE</color>
+    <color name="GreyC">#CCCCCC</color>
+    <color name="GreyB">#BBBBBB</color>
+    <color name="GreyA">#AAAAAA</color>
+    <color name="Grey9">#999999</color>
+    <color name="Grey8">#888888</color>
+    <color name="Grey6">#666666</color>
+    <color name="Black2">#222222</color>
+    <color name="Black0">#000000</color>
 </resources>

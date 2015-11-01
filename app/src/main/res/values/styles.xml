@@ -3,9 +3,6 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="FullscreenTheme" parent="AppTheme">
@@ -17,14 +14,14 @@
     </style>
 
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
-        <item name="android:background">@color/black_overlay</item>
     </style>
 
     <style name="HandyCalculatorModeDisplayStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginRight">5dp</item>
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="HandyCalculatorButtonRowStyle">
@@ -40,8 +37,30 @@
         <item name="android:layout_margin">2dp</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/custom_button</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="HandyCalculatorButtonStyle_Ordinary" parent="HandyCalculatorButtonStyle">
+        <item name="android:background">@drawable/custom_button_grey</item>
+    </style>
+
+    <style name="HandyCalculatorButtonStyle_Deci" parent="HandyCalculatorButtonStyle">
+        <item name="android:background">@drawable/custom_button_yellow</item>
+    </style>
+
+    <style name="HandyCalculatorButtonStyle_Admin" parent="HandyCalculatorButtonStyle">
+        <item name="android:background">@drawable/custom_button_red</item>
+    </style>
+
+    <style name="HandyCalculatorButtonStyle_Ops" parent="HandyCalculatorButtonStyle">
+        <item name="android:background">@drawable/custom_button_orange</item>
+        <item name="android:textColor">@color/WhiteE</item>
+    </style>
+
+    <style name="HandyCalculatorButtonStyle_Meta" parent="HandyCalculatorButtonStyle">
+        <item name="android:background">@drawable/custom_button_brown</item>
+        <item name="android:textColor">@color/DarkYellowOrangeL</item>
+    </style>
 
 </resources>

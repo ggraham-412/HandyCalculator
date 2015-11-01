@@ -96,7 +96,7 @@ public class Calculator extends AppCompatActivity {
 
     private boolean m_dispPending = false;
 
-    private void findAndInitializeButtons() {
+    private void findAndInitializeUI() {
         m_button0 = initButton(R.id.button0, ButtonCode.ZERO);
         m_button1 = initButton(R.id.button1, ButtonCode.ONE);
         m_button2 = initButton(R.id.button2, ButtonCode.TWO);
@@ -125,6 +125,17 @@ public class Calculator extends AppCompatActivity {
         m_buttonDotDisp = initButton(R.id.buttonDisp, ButtonCode.DISPLAY);
         m_memoryRecall = initButton(R.id.buttonMR, ButtonCode.MEMORY_RECALL);
         m_memorySave = initButton(R.id.buttonMS, ButtonCode.MEMORY_SAVE);
+        m_mainLayout = findViewById(R.id.layoutMain);
+
+        m_txtDisplayMain = (TextView) findViewById(R.id.txtDisplayMain);
+        m_txtDisplayMode = (TextView) findViewById(R.id.textMode);
+        m_txtDisplayBase = (TextView) findViewById(R.id.textFrac);
+        m_txtDisplayRemainder = (TextView) findViewById(R.id.textRemainder);
+        m_txtDisplayOp = (TextView) findViewById(R.id.textOP);
+        m_txtDisplayMem = (TextView) findViewById(R.id.textMEM);
+
+        m_txtAccum = (TextView)findViewById(R.id.txtAccum);
+        m_txtEntry = (TextView)findViewById(R.id.txtEntry);
     }
 
     public Button initButton(int id, ButtonCode code) {
@@ -399,18 +410,7 @@ public class Calculator extends AppCompatActivity {
 
         setContentView(R.layout.activity_calculator);
 
-        m_mainLayout = findViewById(R.id.layoutMain);
-        m_txtDisplayMain = (TextView) findViewById(R.id.txtDisplayMain);
-        m_txtDisplayMode = (TextView) findViewById(R.id.textMode);
-        m_txtDisplayBase = (TextView) findViewById(R.id.textFrac);
-        m_txtDisplayRemainder = (TextView) findViewById(R.id.textRemainder);
-        m_txtDisplayOp = (TextView) findViewById(R.id.textOP);
-        m_txtDisplayMem = (TextView) findViewById(R.id.textMEM);
-
-        m_txtAccum = (TextView)findViewById(R.id.txtAccum);
-        m_txtEntry = (TextView)findViewById(R.id.txtEntry);
-
-        findAndInitializeButtons();
+        findAndInitializeUI();
 
         // Set up the user interaction to manually show or hide the system UI.
         m_mainLayout.setOnClickListener(new View.OnClickListener() {
