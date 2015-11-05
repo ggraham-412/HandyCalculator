@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.widgetmath.handycalculator.CalculatorFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/PaleDullCyan">
+
+            <RelativeLayout
+                android:id="@+id/divModeInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:id="@+id/textMode"
+                    style="@style/HandyCalculatorModeDisplayStyle"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="ACC" />
+
+                <TextView
+                    android:id="@+id/textFrac"
+                    style="@style/HandyCalculatorModeDisplayStyle"
+                    android:layout_toRightOf="@+id/textMode"
+                    android:layout_alignParentTop="true"
+                    android:text="1/64th" />
+
+                <TextView
+                    android:id="@+id/textMEM"
+                    style="@style/HandyCalculatorModeDisplayStyle"
+                    android:layout_toRightOf="@+id/textFrac"
+                    android:layout_alignParentTop="true"
+                    android:text="M" />
+
+                <TextView
+                    android:id="@+id/textOP"
+                    style="@style/HandyCalculatorModeDisplayStyle"
+                    android:layout_toRightOf="@+id/textMEM"
+                    android:layout_alignParentTop="true"
+                    android:text="+" />
+
+                <TextView
+                    android:id="@+id/textRemainder"
+                    style="@style/HandyCalculatorModeDisplayStyle"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:text="+0.0035" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/txtDisplayMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:textSize="40sp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/HandyCalculatorButtonRowStyle" >
+
+            <Button
+                android:id="@+id/buttonC"
+                style="@style/HandyCalculatorButtonStyle_Admin"
+                android:text="C" />
+
+            <Button
+                android:id="@+id/buttonCE"
+                style="@style/HandyCalculatorButtonStyle_Admin"
+                android:text="CE" />
+
+
+            <Button
+                android:id="@+id/buttonMR"
+                style="@style/HandyCalculatorButtonStyle_Meta"
+                android:text="MR" />
+
+            <Button
+                android:id="@+id/buttonMS"
+                style="@style/HandyCalculatorButtonStyle_Meta"
+                android:text="MS" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/HandyCalculatorButtonRowStyle" >
+
+            <Button
+                android:id="@+id/button7"
+                style="@style/HandyCalculatorButtonStyle_Ordinary"
+                android:text="7" />
+
+            <Button
+                android:id="@+id/button8"
+                style="@style/HandyCalculatorButtonStyle_Ordinary"
+                android:text="8" />
+
+            <Button
+                android:id="@+id/button9"
+                style="@style/HandyCalculatorButtonStyle_Ordinary"
+                android:text="9" />
+
+            <Button
+                android:id="@+id/buttonDiv"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="\u00F7" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/HandyCalculatorButtonRowStyle" >
+
+            <Button
+                android:id="@+id/button4"
+                style="@style/HandyCalculatorButtonStyle_Ordinary"
+                android:text="4" />
+
+            <Button
+                android:id="@+id/button5"
+                style="@style/HandyCalculatorButtonStyle_Ordinary"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/button6"
+                style="@style/HandyCalculatorButtonStyle_Ordinary"
+                android:text="6" />
+
+            <Button
+                android:id="@+id/buttonMul"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="X" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/HandyCalculatorButtonRowStyle" >
+
+            <Button
+                android:id="@+id/button1"
+                style="@style/HandyCalculatorButtonStyle_Ordinary"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/button2"
+                style="@style/HandyCalculatorButtonStyle_Ordinary"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/button3"
+                style="@style/HandyCalculatorButtonStyle_Ordinary"
+                android:text="3" />
+
+            <Button
+                android:id="@+id/buttonMin"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="-" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/HandyCalculatorButtonRowStyle" >
+
+            <Button
+                android:id="@+id/buttonCHS"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="+/-" />
+
+            <Button
+                android:id="@+id/button0"
+                style="@style/HandyCalculatorButtonStyle_Ordinary"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/buttonEq"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="=" />
+
+            <Button
+                android:id="@+id/buttonPlu"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="+" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/HandyCalculatorButtonRowStyle" >
+
+            <Button
+                android:id="@+id/buttonDisp"
+                style="@style/HandyCalculatorButtonStyle_Meta"
+                android:text="Disp" />
+
+            <Button
+                android:id="@+id/buttonDot"
+                style="@style/HandyCalculatorButtonStyle_Deci"
+                android:text="." />
+
+            <Button
+                android:id="@+id/buttonDot2"
+                style="@style/HandyCalculatorButtonStyle_Deci"
+                android:text="1/2" />
+
+            <Button
+                android:id="@+id/buttonDot4"
+                style="@style/HandyCalculatorButtonStyle_Deci"
+                android:text="1/4" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/HandyCalculatorButtonRowStyle" >
+
+            <Button
+                android:id="@+id/buttonDot8"
+                style="@style/HandyCalculatorButtonStyle_Deci"
+                android:text="1/8" />
+
+            <Button
+                android:id="@+id/buttonDot16"
+                style="@style/HandyCalculatorButtonStyle_Deci"
+                android:text="1/16" />
+
+            <Button
+                android:id="@+id/buttonDot32"
+                style="@style/HandyCalculatorButtonStyle_Deci"
+                android:text="1/32" />
+
+            <Button
+                android:id="@+id/buttonDot64"
+                style="@style/HandyCalculatorButtonStyle_Deci"
+                android:text="1/64" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:id="@+id/txtAccum"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:id="@+id/txtEntry"/>
+
+
+</LinearLayout>
