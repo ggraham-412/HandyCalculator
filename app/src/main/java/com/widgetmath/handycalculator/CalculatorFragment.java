@@ -151,13 +151,37 @@ public class CalculatorFragment extends Fragment {
         m_txtDisplayRemainder.setText(DisplayEntry.getRemainderDisplay(toDisplay, m_calculator.getDisplayMode()));
     }
 
+    private void DoPending() {
+        boolean isDisplayPending = ((IHandyCalculator)m_calculator).isDisplayPending();
+        m_button0.setEnabled(!isDisplayPending);
+        m_button1.setEnabled(!isDisplayPending);
+        m_button2.setEnabled(!isDisplayPending);
+        m_button3.setEnabled(!isDisplayPending);
+        m_button4.setEnabled(!isDisplayPending);
+        m_button5.setEnabled(!isDisplayPending);
+        m_button6.setEnabled(!isDisplayPending);
+        m_button7.setEnabled(!isDisplayPending);
+        m_button8.setEnabled(!isDisplayPending);
+        m_button9.setEnabled(!isDisplayPending);
+        m_buttonCE.setEnabled(!isDisplayPending);
+        m_buttonC.setEnabled(!isDisplayPending);
+        m_buttonMin.setEnabled(!isDisplayPending);
+        m_buttonMul.setEnabled(!isDisplayPending);
+        m_buttonPlu.setEnabled(!isDisplayPending);
+        m_buttonDiv.setEnabled(!isDisplayPending);
+        m_buttonEq.setEnabled(!isDisplayPending);
+        m_buttonChs.setEnabled(!isDisplayPending);
+        m_memoryRecall.setEnabled(!isDisplayPending);
+        m_memorySave.setEnabled(!isDisplayPending);
+    }
+
     private void DoDisplay() {
 
         IHandyCalculator hcalc = (IHandyCalculator)m_calculator;
 
         if ( m_calculator.getDisplayMode() == DisplayMode.ACCUMULATOR ) {
             INumberEntry acc = hcalc.getAccumulator();
-            acc.setValue(acc.getValue(), acc.getBase());
+            acc.setValue(acc.getValue(), ((IHandyCalculator) m_calculator).getDisplayBase().getBase());
             DisplayNumber(acc);
         }
         else {
@@ -165,7 +189,12 @@ public class CalculatorFragment extends Fragment {
         }
 
         m_txtDisplayBase.setText(hcalc.getDisplayBase().toString());
-        m_txtDisplayMode.setText(hcalc.getDisplayMode().toString());
+        if ( ((IHandyCalculator) m_calculator).isDisplayPending() ) {
+            m_txtDisplayMode.setText("DSP");
+        }
+        else {
+            m_txtDisplayMode.setText(hcalc.getDisplayMode().toString());
+        }
         m_txtDisplayOp.setText(hcalc.getPendingOp().toString());
 
         m_txtAccum.setText(hcalc.getAccumulator().getValue().toPlainString());
@@ -177,6 +206,8 @@ public class CalculatorFragment extends Fragment {
         else {
             m_txtDisplayMem.setText("");
         }
+
+        DoPending();
 
         return;
 

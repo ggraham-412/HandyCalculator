@@ -52,11 +52,15 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
     private void HandleNumberInput(ButtonCode code) {
         if ( isNumericError() ) return;
         getEntry().addDigit(code.getValue());
-        setDisplayMode( DisplayMode.ENTRY );
+        setDisplayMode(DisplayMode.ENTRY);
     }
 
     private void HandleOperator(ButtonCode code) {
         if ( isNumericError() ) return;
+        if ( getDisplayMode() == DisplayMode.ACCUMULATOR ) {
+            getEntry().setValue(getAccumulator());
+            setDisplayMode(DisplayMode.ENTRY);
+        }
         HandlePendingOp();
         setPendingOp( code );
     }
@@ -146,7 +150,6 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
                 if ( !getEntry().isDotPushed() ) getEntry().pushDot(code.getValue());
                 break;
         }
-
     }
 
     private boolean HandleDispPending(ButtonCode code) {
@@ -159,6 +162,9 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
             case DEC_THIRTYSECOND:
             case DEC_SIXTYFOURTH:
                 m_displayBase = FracMode.getFracMode(code.getValue());
+                return true;
+            case DISPLAY:
+                m_dispPending = false;
                 return true;
             default:
                 return false;
