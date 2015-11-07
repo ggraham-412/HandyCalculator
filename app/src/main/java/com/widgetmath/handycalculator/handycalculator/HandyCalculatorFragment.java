@@ -1,7 +1,5 @@
-package com.widgetmath.handycalculator;
+package com.widgetmath.handycalculator.handycalculator;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,15 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.widgetmath.handycalculator.calculator.HandyCalculator;
+import com.widgetmath.handycalculator.R;
 import com.widgetmath.handycalculator.calculator.ICalculator;
-import com.widgetmath.handycalculator.calculator.IHandyCalculator;
 import com.widgetmath.handycalculator.utils.DisplayEntry;
 import com.widgetmath.handycalculator.utils.INumberEntry;
 
 import java.math.BigDecimal;
 
-public class CalculatorFragment extends Fragment {
+public class HandyCalculatorFragment extends Fragment {
 
     // UI Elements
     private Button m_button0;
@@ -213,7 +210,7 @@ public class CalculatorFragment extends Fragment {
 
     }
 
-    public CalculatorFragment() {
+    public HandyCalculatorFragment() {
     }
 
     @Override
@@ -230,7 +227,7 @@ public class CalculatorFragment extends Fragment {
         // Inflate the layout for this fragment
 
         if ( m_mainView == null ) {
-            m_mainView = inflater.inflate(R.layout.fragment_calculator, container, false);
+            m_mainView = inflater.inflate(R.layout.fragment_handycalculator, container, false);
         }
         findAndInitializeUI();
         DoDisplay();

@@ -1,11 +1,5 @@
 package com.widgetmath.handycalculator;
 
-import com.widgetmath.handycalculator.calculator.HandyCalculator;
-import com.widgetmath.handycalculator.calculator.ICalculator;
-import com.widgetmath.handycalculator.calculator.IHandyCalculator;
-import com.widgetmath.handycalculator.utils.DisplayEntry;
-import com.widgetmath.handycalculator.utils.INumberEntry;
-import com.widgetmath.handycalculator.utils.NumberEntry_Wrapper;
 import android.annotation.SuppressLint;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,10 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
-import java.math.BigDecimal;
+import com.widgetmath.handycalculator.handycalculator.HandyCalculatorFragment;
 
 
 /**
@@ -74,7 +66,7 @@ public class CalculatorActivity extends AppCompatActivity {
             }
         });
 
-        CalculatorFragment fragment = new CalculatorFragment();
+        HandyCalculatorFragment fragment = new HandyCalculatorFragment();
         getFragmentManager().beginTransaction().add(R.id.layoutMain, fragment).commit();
 
     }

@@ -1,4 +1,4 @@
-package com.widgetmath.handycalculator;
+package com.widgetmath.handycalculator.handycalculator;
 
 /**
  * Created by ggraham412 on 10/30/2015.

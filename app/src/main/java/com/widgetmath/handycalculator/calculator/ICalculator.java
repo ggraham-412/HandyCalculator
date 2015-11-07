@@ -1,19 +1,20 @@
 package com.widgetmath.handycalculator.calculator;
 
-import com.widgetmath.handycalculator.ButtonCode;
-import com.widgetmath.handycalculator.DisplayMode;
+import com.widgetmath.handycalculator.handycalculator.DisplayMode;
 import com.widgetmath.handycalculator.utils.INumberEntry;
 
 /**
- * Created by ggraham412 on 11/1/2015.
+ * Interface for a simple calculator
+ *
+ * @author ggraham
  */
 public interface ICalculator {
 
     public INumberEntry getAccumulator();
     public INumberEntry getEntry();
     public INumberEntry getMemory();
-    public DisplayMode getDisplayMode();
-    public ButtonCode getPendingOp();
+    public Object getDisplayMode();
+    public Object getPendingOp();
 
     public boolean isNAN();
     public boolean isOE();
@@ -21,6 +22,6 @@ public interface ICalculator {
 
     public boolean isNumericError();
 
-    public void HandleInput(ButtonCode code);
+    public void HandleInput(Object code);
 
 }

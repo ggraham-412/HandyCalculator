@@ -1,6 +1,6 @@
-package com.widgetmath.handycalculator.calculator;
+package com.widgetmath.handycalculator.handycalculator;
 
-import com.widgetmath.handycalculator.FracMode;
+import com.widgetmath.handycalculator.calculator.ICalculator;
 
 /**
  * Created by ggraham412 on 11/1/2015.

@@ -1,10 +1,6 @@
-package com.widgetmath.handycalculator.calculator;
+package com.widgetmath.handycalculator.handycalculator;
 
-import com.widgetmath.handycalculator.ButtonCode;
-import com.widgetmath.handycalculator.DisplayMode;
-import com.widgetmath.handycalculator.FracMode;
-import com.widgetmath.handycalculator.utils.INumberEntry;
-import com.widgetmath.handycalculator.utils.NumberEntry_Wrapper;
+import com.widgetmath.handycalculator.calculator.Calculator;
 
 import java.math.BigDecimal;
 
@@ -16,10 +12,21 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
 
     private FracMode m_displayBase;
     private boolean m_dispPending;
+    private ButtonCode m_pendingOp;
+    private DisplayMode m_displayMode;
 
     public HandyCalculator() {
         m_displayBase = FracMode.DECIMAL;
         m_dispPending = false;
+        m_pendingOp = ButtonCode.NULL;
+    }
+
+    @Override
+    public DisplayMode getDisplayMode() {
+        return m_displayMode;
+    }
+    protected void setDisplayMode(Object mode) {
+        m_displayMode = (DisplayMode)mode;
     }
 
     @Override
@@ -62,7 +69,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
             setDisplayMode(DisplayMode.ENTRY);
         }
         HandlePendingOp();
-        setPendingOp( code );
+        setPendingOp(code);
     }
 
     private void HandleChangeSign(ButtonCode code) {
@@ -73,6 +80,16 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
         else {
             getEntry().negate();
         }
+    }
+
+    @Override
+    public ButtonCode getPendingOp() {
+        return m_pendingOp;
+    }
+
+    @Override
+    protected void setPendingOp(Object pendingOp) {
+        m_pendingOp = (ButtonCode)pendingOp;
     }
 
     private void HandlePendingOp() {
@@ -172,7 +189,9 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
     }
 
     @Override
-    public void HandleInput(ButtonCode code) {
+    public void HandleInput(Object _code) {
+        ButtonCode code = (ButtonCode)_code;
+
         if ( m_dispPending ) {
             if ( HandleDispPending(code) ) {
                 m_dispPending = false;

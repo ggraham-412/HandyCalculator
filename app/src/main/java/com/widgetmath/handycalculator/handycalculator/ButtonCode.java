@@ -1,7 +1,13 @@
-package com.widgetmath.handycalculator;
+package com.widgetmath.handycalculator.handycalculator;
 
+/***
+ * Enumeration of handy calculator operations
+ *
+ * @author ggraham412
+ */
 public enum ButtonCode {
 
+    // Null operator
     NULL(0),
 
     // Administrative functions
@@ -44,18 +50,28 @@ public enum ButtonCode {
     DEC_THIRTYSECOND(32),
     DEC_SIXTYFOURTH(64);
 
+    // Enum data
+
+    private final String m_displayString;  // simple string to displat with enum constant
+    private final int m_value;             // int value to store with enum constant
+
+    /**
+     *
+     * @return opaque value of the enum constant
+     */
     public int getValue() {
         return m_value;
     }
 
+    /**
+     *
+     * @return string to display for this enum constant
+     */
     @Override
     public String toString() {
         return m_displayString;
     }
 
-    private final String m_displayString;
-
-    private final int m_value;
 
     private ButtonCode(int value) {
         this(value,"");

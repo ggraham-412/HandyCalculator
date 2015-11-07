@@ -1,4 +1,4 @@
-package com.widgetmath.handycalculator;
+package com.widgetmath.handycalculator.handycalculator;
 
 
 /**

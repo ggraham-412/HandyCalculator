@@ -1,6 +1,6 @@
 package com.widgetmath.handycalculator.utils;
 
-import com.widgetmath.handycalculator.DisplayMode;
+import com.widgetmath.handycalculator.handycalculator.DisplayMode;
 
 import java.math.BigDecimal;
 

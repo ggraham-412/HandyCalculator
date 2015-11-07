@@ -1,8 +1,6 @@
 package com.widgetmath.handycalculator.calculator;
 
-import com.widgetmath.handycalculator.ButtonCode;
-import com.widgetmath.handycalculator.DisplayMode;
-import com.widgetmath.handycalculator.FracMode;
+import com.widgetmath.handycalculator.handycalculator.DisplayMode;
 import com.widgetmath.handycalculator.utils.INumberEntry;
 import com.widgetmath.handycalculator.utils.NumberEntry_Wrapper;
 
@@ -17,7 +15,6 @@ public abstract class Calculator implements ICalculator {
     private INumberEntry m_memoryValue;
 
     private DisplayMode m_displayMode;
-    private ButtonCode m_pendingOp;
 
     private boolean m_isNan;
     private boolean m_isOE;
@@ -27,8 +24,6 @@ public abstract class Calculator implements ICalculator {
         m_accumulator = new NumberEntry_Wrapper();
         m_numberEntry = new NumberEntry_Wrapper();
         m_memoryValue = new NumberEntry_Wrapper();
-        m_displayMode = DisplayMode.ENTRY;
-        m_pendingOp = ButtonCode.NULL;
         m_isNan = false;
         m_isOE = false;
         m_isUE =false;
@@ -55,20 +50,12 @@ public abstract class Calculator implements ICalculator {
     }
 
     @Override
-    public DisplayMode getDisplayMode() {
-        return m_displayMode;
-    }
-    protected void setDisplayMode(DisplayMode mode) {
-        m_displayMode = mode;
-    }
+    public abstract Object getDisplayMode();
+    protected abstract void setDisplayMode(Object mode);
 
     @Override
-    public ButtonCode getPendingOp() {
-        return m_pendingOp;
-    }
-    protected void setPendingOp(ButtonCode op) {
-        m_pendingOp = op;
-    }
+    public abstract Object getPendingOp();
+    protected abstract void setPendingOp(Object op);
 
     @Override
     public boolean isNAN() {
@@ -95,6 +82,6 @@ public abstract class Calculator implements ICalculator {
     }
 
     @Override
-    public abstract void HandleInput(ButtonCode code);
+    public abstract void HandleInput(Object code);
 
 }
