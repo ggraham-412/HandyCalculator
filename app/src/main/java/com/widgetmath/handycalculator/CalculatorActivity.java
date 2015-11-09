@@ -3,6 +3,7 @@ package com.widgetmath.handycalculator;
 import android.annotation.SuppressLint;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -57,6 +58,8 @@ public class CalculatorActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
+                Intent i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
                 return true;
 
             default:

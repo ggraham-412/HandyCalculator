@@ -1,7 +1,9 @@
 package com.widgetmath.handycalculator.handycalculator;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -174,6 +176,8 @@ public class HandyCalculatorFragment extends Fragment {
 
     private void DoDisplay() {
 
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
+        boolean bDebugMode = SP.getBoolean("debugMode", false);
         IHandyCalculator hcalc = (IHandyCalculator)m_calculator;
 
         if ( m_calculator.getDisplayMode() == DisplayMode.ACCUMULATOR ) {
@@ -196,6 +200,9 @@ public class HandyCalculatorFragment extends Fragment {
 
         m_txtAccum.setText(hcalc.getAccumulator().getValue().toPlainString());
         m_txtEntry.setText(hcalc.getEntry().getValue().toPlainString());
+
+        m_txtAccum.setVisibility(bDebugMode ? View.VISIBLE : View.INVISIBLE);
+        m_txtEntry.setVisibility(bDebugMode? View.VISIBLE:View.INVISIBLE);
 
         if (hcalc.getMemory().getValue().compareTo(BigDecimal.ZERO)!=0) {
             m_txtDisplayMem.setText("M");
