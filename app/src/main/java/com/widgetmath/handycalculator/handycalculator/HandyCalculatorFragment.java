@@ -144,8 +144,8 @@ public class HandyCalculatorFragment extends Fragment {
             DisplayError("UE");
             return;
         }
-        m_txtDisplayMain.setText(DisplayEntry.getMainDisplay(toDisplay, m_calculator.getDisplayMode()));
-        m_txtDisplayRemainder.setText(DisplayEntry.getRemainderDisplay(toDisplay, m_calculator.getDisplayMode()));
+        m_txtDisplayMain.setText(DisplayEntry.getMainDisplay(toDisplay, (DisplayMode)m_calculator.getDisplayMode()));
+        m_txtDisplayRemainder.setText(DisplayEntry.getRemainderDisplay(toDisplay, (DisplayMode)m_calculator.getDisplayMode()));
     }
 
     private void DoPending() {

@@ -19,6 +19,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
         m_displayBase = FracMode.DECIMAL;
         m_dispPending = false;
         m_pendingOp = ButtonCode.NULL;
+        m_displayMode = DisplayMode.ACCUMULATOR;
     }
 
     @Override
