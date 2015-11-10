@@ -43,8 +43,6 @@ public class CalculatorActivity extends AppCompatActivity {
 
     private boolean m_toolsVisible = false;
     private View m_mainLayout;
-    private View m_topLayout;
-    private View m_control;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,11 +75,9 @@ public class CalculatorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calculator);
 
         m_mainLayout = findViewById(R.id.layoutMain);
-        m_topLayout = findViewById(R.id.layoutTop);
-        m_control = findViewById(R.id.layoutControls);
 
         // Set up the user interaction to manually show or hide the system UI.
-        m_control.setOnClickListener(new View.OnClickListener() {
+        m_mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggle();
@@ -148,7 +144,7 @@ public class CalculatorActivity extends AppCompatActivity {
             // Note that some of these constants are new as of API 16 (Jelly Bean)
             // and API 19 (KitKat). It is safe to use them, as they are inlined
             // at compile-time and do nothing on earlier devices.
-            m_topLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+            m_mainLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                     | View.SYSTEM_UI_FLAG_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -160,7 +156,7 @@ public class CalculatorActivity extends AppCompatActivity {
     @SuppressLint("InlinedApi")
     private void show() {
         // Show the system bar
-        m_topLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        m_mainLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         m_toolsVisible = true;
 

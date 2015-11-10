@@ -59,6 +59,7 @@ public class HandyCalculatorFragment extends Fragment {
     private TextView m_txtAccum;
     private TextView m_txtEntry;
 
+    private View m_debugView;
     private View m_mainView;
 
 
@@ -103,6 +104,7 @@ public class HandyCalculatorFragment extends Fragment {
 
         m_txtAccum = (TextView)(m_mainView.findViewById(R.id.txtAccum));
         m_txtEntry = (TextView)(m_mainView.findViewById(R.id.txtEntry));
+        m_debugView = (View)(m_mainView.findViewById(R.id.viewDebug));
     }
 
     public Button initButton(int id, ButtonCode code) {
@@ -177,7 +179,7 @@ public class HandyCalculatorFragment extends Fragment {
     private void DoDisplay() {
 
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
-        boolean bDebugMode = SP.getBoolean("debugMode", false);
+        boolean bDebugMode = SP.getBoolean(getString(R.string.pref_debugMode), false);
         IHandyCalculator hcalc = (IHandyCalculator)m_calculator;
 
         if ( m_calculator.getDisplayMode() == DisplayMode.ACCUMULATOR ) {
@@ -201,8 +203,7 @@ public class HandyCalculatorFragment extends Fragment {
         m_txtAccum.setText(hcalc.getAccumulator().getValue().toPlainString());
         m_txtEntry.setText(hcalc.getEntry().getValue().toPlainString());
 
-        m_txtAccum.setVisibility(bDebugMode ? View.VISIBLE : View.INVISIBLE);
-        m_txtEntry.setVisibility(bDebugMode? View.VISIBLE:View.INVISIBLE);
+        m_debugView.setVisibility(bDebugMode ? View.VISIBLE : View.INVISIBLE);
 
         if (hcalc.getMemory().getValue().compareTo(BigDecimal.ZERO)!=0) {
             m_txtDisplayMem.setText("M");

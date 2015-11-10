@@ -3,37 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    android:paddingTop="20dp"
+    android:paddingTop="30dp"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
     android:paddingBottom="10dp"
     tools:context=".TestActivity">
 
-    <LinearLayout
-        android:id="@+id/layoutTop"
+    <!-- UI Element for the hcalculator fragments-->
+    <FrameLayout
+        android:id="@+id/layoutMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="100">
-
-        <FrameLayout
-            android:id="@+id/layoutMain"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="80">
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/layoutControls"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="20">
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 </FrameLayout>

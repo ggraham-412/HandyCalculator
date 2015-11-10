@@ -8,13 +8,14 @@ import com.widgetmath.handycalculator.utils.INumberEntry;
  *   - An accumulator to hold results
  *   - A single numeric entry slot
  *   - A single memory slot
- *   - A state indicating if accumulator is ready or if input is being entered.
- *   - A state indicating the current pending operation
+ *   - A property indicating if accumulator is ready or if input is being entered.
+ *   - A property indicating the current pending operation
  *
  *
  * @author ggraham
  */
 public interface ICalculator {
+
 
     public INumberEntry getAccumulator();
     public INumberEntry getEntry();
