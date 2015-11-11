@@ -1,6 +1,11 @@
-package com.widgetmath.handycalculator.handycalculator;
+package com.widgetmath.handycalculator.calculator;
 
 /**
+ * Indicates the DisplayMode of the calculator.  This is tied into the
+ * calculator state.
+ *   -ACCUMULATOR:  A result has recently been calculated, ready to display accumulator
+ *   -ENTRY: An entry is being built by the user
+ *
  * Created by ggraham412 on 10/30/2015.
  */
 public enum DisplayMode {

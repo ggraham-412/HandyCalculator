@@ -1,6 +1,5 @@
 package com.widgetmath.handycalculator.calculator;
 
-import com.widgetmath.handycalculator.handycalculator.DisplayMode;
 import com.widgetmath.handycalculator.utils.INumberEntry;
 
 /**
@@ -9,27 +8,83 @@ import com.widgetmath.handycalculator.utils.INumberEntry;
  *   - A single numeric entry slot
  *   - A single memory slot
  *   - A property indicating if accumulator is ready or if input is being entered.
- *   - A property indicating the current pending operation
+ *   - A property indicating the current pending operation (for infix operations)
  *
  *
  * @author ggraham
  */
 public interface ICalculator {
 
+    /**
+     * Returns the accumulator object, which holds results of operations.
+     *
+     * @return : the accumulator object
+     */
+    INumberEntry getAccumulator();
 
-    public INumberEntry getAccumulator();
-    public INumberEntry getEntry();
-    public INumberEntry getMemory();
-    public Object getDisplayMode();
-    public Object getPendingOp();
+    /**
+     * Returns the entry object, which holds current numeric entry while user is building it.
+     *
+     * @return : the entry object
+     */
+    INumberEntry getEntry();
 
-    public boolean isNAN();
-    public boolean isOE();
-    public boolean isUE();
+    /**
+     * Returns the memory object, which holds current value stored in memory .
+     *
+     * @return : the memory object
+     */
+    INumberEntry getMemory();
 
-    public boolean isNumericError();
+    /**
+     * The current display mode - accumulator when there is a result to display, or
+     * entry when the user is building a number entry
+     *
+     * @return : The current display mode
+     */
+    DisplayMode getDisplayMode();
 
-    public void HandleInput(Object code);
+    /**
+     * Returns true if the accumulator is Not a Number
+     *
+     * @return : True if the accumulator is Not a Number
+     */
+    boolean isNAN();
+
+    /**
+     * Returns true if the accumulator is in Overflow
+     *
+     * @return : True if the accumulator is in Overflow
+     */
+    boolean isOE();
+
+    /**
+     * Returns true if the accumulator is in Underflow
+     *
+     * @return : True if the accumulator is in Underflow
+     */
+    boolean isUE();
+
+    /**
+     * Returns true if the calculator is in an error state.
+     *
+     * @return : True is any of NaN, OE, or UE is true.
+     */
+    boolean isNumericError();
+
+    /**
+     * Clears the accumulator and entry.
+     *
+     * @param clearMem : If true, will clear the memory as well
+     */
+    void clear(boolean clearMem);
+
+    /**
+     * Handles button input
+     *
+     * @param code : A code of
+     */
+    void HandleInput(Object code);
 
 }
 

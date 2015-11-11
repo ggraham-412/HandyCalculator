@@ -2,9 +2,11 @@ package com.widgetmath.handycalculator.handycalculator;
 
 
 /**
+ * Represents powers of 2 fractions from 2 to 64, and decimal (represented as 0)
+ *
  * Created by ggraham412 on 10/30/2015.
  */
-public enum FracMode {
+public enum BaseMode {
 
     DECIMAL("dec", 0),
     HALF("1/2", 2),
@@ -17,16 +19,26 @@ public enum FracMode {
     private final String m_displayString;
     private final int m_base;
 
-    private FracMode(String disp, int base) {
+    private BaseMode(String disp, int base) {
         m_displayString = disp;
         m_base = base;
     }
 
+    /**
+     * Returns the base (denominator) of the fraction
+     * @return
+     */
     public int getBase() {
         return m_base;
     }
 
-    public static FracMode getFracMode(int base) {
+    /**
+     * Converts a base into a BaseMode instance
+     *
+     * @param base : The base (2,4,8,16,32, or 64)
+     * @return : The specified BaseMode instance, or decimal (base == 0)
+     */
+    public static BaseMode getFracMode(int base) {
         switch (base) {
             case 2:
                 return HALF;

@@ -2,6 +2,7 @@
 <resources>
 
     <!-- From http://www.visibone.com/colorlab/ -->
+    <color name="OrangeOrangeYellow">#FF9900</color>
     <color name="DarkYellowOrangeL">#D4A100</color>
     <color name="DarkYellowOrange">#CC9900</color>
     <color name="DarkYellowOrangeD">#C49100</color>
