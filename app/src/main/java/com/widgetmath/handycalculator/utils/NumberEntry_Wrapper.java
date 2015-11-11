@@ -60,7 +60,7 @@ public class NumberEntry_Wrapper implements INumberEntry {
     public BigDecimal getIntegerPart() { return m_impl.getIntegerPart(); }
     public BigDecimal getRemainder() { return m_impl.getRemainder(); }
 
-    // Reset 
+    // Reset
     public void clear() {
         m_impl = new NumberEntry_Decimal();
     }

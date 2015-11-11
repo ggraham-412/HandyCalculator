@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBoxPreference
-        android:title="Remainder Mode"
-        android:defaultValue="false"
-        android:summary="Display remainder relative to current fraction (checked) or display absolute (unchecked)."
-        android:key="@string/pref_remainderMode"/>
+    <PreferenceCategory
+        android:title="Handy Calculator">
 
-    <CheckBoxPreference
-        android:title="Debug Mode"
-        android:defaultValue="false"
-        android:summary="Show current values of accumulator and entry."
-        android:key="@string/pref_debugMode"/>
+        <ListPreference
+            android:key="@string/pref_remainderBase"
+            android:title="Remainder Display Base"
+            android:defaultValue="@string/opt_remainderBase_useDecimal"
+            android:summary="Display remainder in current display base or use decimal"
+            android:entries="@array/pref_remainderBase_entries"
+            android:entryValues="@array/pref_remainderBase_values"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Miscellaneous">
+
+        <CheckBoxPreference
+            android:title="Debug Mode"
+            android:defaultValue="false"
+            android:summary="Show current exact values of accumulator and entry."
+            android:key="@string/pref_debugMode"/>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

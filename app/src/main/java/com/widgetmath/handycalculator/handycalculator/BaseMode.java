@@ -8,7 +8,7 @@ package com.widgetmath.handycalculator.handycalculator;
  */
 public enum BaseMode {
 
-    DECIMAL("dec", 0),
+    DECIMAL("DEC", 0),
     HALF("1/2", 2),
     FOURTH("1/4th", 4),
     EIGHTH("1/8th", 8),

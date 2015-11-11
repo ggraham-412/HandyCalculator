@@ -1,4 +1,4 @@
-package com.widgetmath.handycalculator.calculator;
+package com.widgetmath.handycalculator.utils;
 
 /**
  * Indicates the DisplayMode of the calculator.  This is tied into the

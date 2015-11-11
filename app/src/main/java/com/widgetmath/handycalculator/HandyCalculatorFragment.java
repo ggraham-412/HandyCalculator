@@ -10,8 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.widgetmath.handycalculator.R;
-import com.widgetmath.handycalculator.calculator.DisplayMode;
+import com.widgetmath.handycalculator.utils.DisplayMode;
 import com.widgetmath.handycalculator.handycalculator.ButtonCode;
 import com.widgetmath.handycalculator.handycalculator.HandyCalculator;
 import com.widgetmath.handycalculator.handycalculator.IHandyCalculator;
@@ -164,6 +163,9 @@ public class HandyCalculatorFragment extends Fragment {
         // Get display parameters
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
         boolean bDebugMode = SP.getBoolean(getString(R.string.pref_debugMode), false);
+        String sFracMode = SP.getString(getString(R.string.pref_remainderBase),
+                                        getString(R.string.opt_remainderBase_useDecimal));
+        boolean bFracMode = sFracMode.equals(getString(R.string.opt_remainderBase_useDisplayBase));
 
         // Main Display and Remainder
         INumberEntry toDisplay;
@@ -174,7 +176,7 @@ public class HandyCalculatorFragment extends Fragment {
         else {
             toDisplay = m_calculator.getEntry();
         }
-        DisplayMainAndRemainder(toDisplay);
+        DisplayMainAndRemainder(toDisplay, bFracMode);
 
         // Mode indicators
         boolean isDisplayPending = m_calculator.isDisplayPending();
@@ -203,7 +205,7 @@ public class HandyCalculatorFragment extends Fragment {
      *
      * @param toDisplay : The number to display
      */
-    private void DisplayMainAndRemainder(INumberEntry toDisplay) {
+    private void DisplayMainAndRemainder(INumberEntry toDisplay, boolean fracMode) {
         if ( m_calculator.isNAN() ) {
             DisplayError("NaN");
             return;
@@ -216,8 +218,9 @@ public class HandyCalculatorFragment extends Fragment {
             DisplayError("UE");
             return;
         }
-        m_txtDisplayMain.setText(DisplayEntry.getMainDisplay(toDisplay, (DisplayMode)m_calculator.getDisplayMode()));
-        m_txtDisplayRemainder.setText(DisplayEntry.getRemainderDisplay(toDisplay, (DisplayMode)m_calculator.getDisplayMode()));
+        m_txtDisplayMain.setText(DisplayEntry.getMainDisplay(toDisplay, m_calculator.getDisplayMode()));
+        m_txtDisplayRemainder.setText(DisplayEntry.getRemainderDisplay(toDisplay,
+                m_calculator.getDisplayMode(),fracMode));
     }
 
     /**
@@ -313,6 +316,17 @@ public class HandyCalculatorFragment extends Fragment {
         DoDisplay();
 
         return m_mainView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DoDisplay();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 
 }

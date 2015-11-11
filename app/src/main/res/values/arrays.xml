@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_remainderBase_entries">
+        <item>Use Display Base</item>
+        <item>Use Decimal</item>
+    </string-array>
+    <string-array name="pref_remainderBase_values">
+        <item>@string/opt_remainderBase_useDisplayBase</item>
+        <item>@string/opt_remainderBase_useDecimal</item>
+    </string-array>
+</resources>

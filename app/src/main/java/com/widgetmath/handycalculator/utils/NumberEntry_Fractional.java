@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 public class NumberEntry_Fractional implements INumberEntry {
 
     public static final int MAX_SCALE = 16;
+    public static final BigDecimal HALF = new BigDecimal("0.5");
 
     // State
     private BigDecimal m_ivalue;    // Integer part
@@ -98,7 +99,12 @@ public class NumberEntry_Fractional implements INumberEntry {
             BigDecimal ftmp = val.subtract(m_ivalue);
             ftmp = ftmp.divide(m_quantum, MAX_SCALE, BigDecimal.ROUND_HALF_EVEN);
             m_fvalue = ftmp.setScale(0, BigDecimal.ROUND_DOWN);
-            m_remainder = m_quantum.multiply(ftmp.subtract(m_fvalue));
+            BigDecimal fracfrac = ftmp.subtract(m_fvalue);
+            m_remainder = m_quantum.multiply(fracfrac);
+            if ( fracfrac.compareTo( HALF ) > 0 ) {
+                m_fvalue = m_fvalue.add(BigDecimal.ONE);
+                m_remainder = m_quantum.multiply(BigDecimal.ONE.subtract(fracfrac)).negate();
+            }
         }
         else {
             m_dotPushed = false;

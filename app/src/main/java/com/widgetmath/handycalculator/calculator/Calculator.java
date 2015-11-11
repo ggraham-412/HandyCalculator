@@ -1,5 +1,6 @@
 package com.widgetmath.handycalculator.calculator;
 
+import com.widgetmath.handycalculator.utils.DisplayMode;
 import com.widgetmath.handycalculator.utils.INumberEntry;
 import com.widgetmath.handycalculator.utils.NumberEntry_Wrapper;
 
