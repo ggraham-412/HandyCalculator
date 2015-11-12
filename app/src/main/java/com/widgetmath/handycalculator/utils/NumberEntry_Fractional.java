@@ -30,9 +30,9 @@ public class NumberEntry_Fractional implements INumberEntry {
     private boolean m_negative;
 
     // Option to allow improper fractions
-    private boolean m_improperMode = false;
-    public boolean getImproperMode() { return m_improperMode; }
-    public void setImproperMode(boolean mode) { m_improperMode = true; }
+    private int m_improperMax = 0;
+    public int getImproperMax() { return m_improperMax; }
+    public void setImproperMax(int n) { m_improperMax = n; }
     public boolean isImproper() {
         return (m_base.compareTo(BigDecimal.ZERO) != 0) &&
                 (m_fvalue.compareTo(m_base)) > 0;
@@ -51,7 +51,8 @@ public class NumberEntry_Fractional implements INumberEntry {
             // Add to fractional part
             if ( m_fvalue.compareTo(BigDecimal.ZERO) == 0 && digit == 0 ) return;
             BigDecimal tmp = m_fvalue.multiply(BigDecimal.TEN).add(new BigDecimal(digit));
-            if ( !m_improperMode && tmp.compareTo(m_base) >= 0 ) return;
+            int ndigits = tmp.toPlainString().length();
+            if ( ndigits > m_improperMax && tmp.compareTo(m_base) >= 0 ) return;
             m_fvalue = tmp;
         } else {
             // Add to integer part

@@ -3,6 +3,7 @@
     <string name="app_name">HandyCalculator</string>
 
     <string name="pref_debugMode">pref_debugMode</string>
+    <string name="pref_allowImproper">pref_allowImproper</string>
     <string name="pref_remainderBase">pref_remainderBase</string>
     <string name="opt_remainderBase_useDisplayBase">opt_remainderBase_useDisplayBase</string>
     <string name="opt_remainderBase_useDecimal">opt_remainderBase_useDecimal</string>

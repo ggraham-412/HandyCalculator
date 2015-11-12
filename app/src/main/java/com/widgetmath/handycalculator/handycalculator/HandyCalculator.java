@@ -274,7 +274,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
                 setDisplayMode(DisplayMode.ACCUMULATOR);
                 setOE(false);
                 setUE(false);
-                setNAN( false );
+                setNAN(false);
                 break;
             case CLEAR_ENTRY:
                 // If there is a numerical error, force the user to hit "C"
@@ -290,11 +290,11 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
                 if ( isNumericError() ) return;
                 if ( getPendingOp() != ButtonCode.NULL ) {
                     HandlePendingOp();
+                    setDisplayMode(DisplayMode.ACCUMULATOR);
+                    getEntry().clear();
                 }
-                setDisplayMode( DisplayMode.ACCUMULATOR );
                 setPendingOp(ButtonCode.NULL);
         }
-        getEntry().clear();
     }
 
     /**

@@ -20,6 +20,12 @@ public class NumberEntry_Decimal implements INumberEntry {
     public void negate() { m_negative = (!m_negative) &&
             (m_value.compareTo(BigDecimal.ZERO) != 0); }  // Don't consider 0 "negative"
 
+    private int m_improperMax = 0;
+    public int getImproperMax() { return m_improperMax; }
+    public void setImproperMax(int n) { m_improperMax = n; }
+    public boolean isImproper() {
+        return false;
+    }
 
     // Add digits                     
     public void addDigit(int digit) {

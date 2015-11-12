@@ -21,6 +21,10 @@ public class NumberEntry_Wrapper implements INumberEntry {
     public boolean isNegative() { return m_impl.isNegative(); }
     public void negate() { m_impl.negate(); };
 
+    public int getImproperMax() { return m_impl.getImproperMax(); }
+    public void setImproperMax(int n) { m_impl.setImproperMax(n); }
+    public boolean isImproper() { return m_impl.isImproper(); }
+
     // Push a dot
     public boolean isDotPushed() { return m_impl.isDotPushed(); }
     public void pushDot(int arg) {

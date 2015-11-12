@@ -151,6 +151,9 @@ public class HandyCalculatorFragment extends Fragment {
     private void dispatchButtonPush(View v) {
         if ( v.getTag() == null ) return;
         ButtonCode code = (ButtonCode)v.getTag();
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
+        boolean allowImproper = SP.getBoolean(getString(R.string.pref_allowImproper), false);
+        m_calculator.getEntry().setImproperMax(allowImproper?3:0);
         m_calculator.HandleInput(code);
         DoDisplay();
     }

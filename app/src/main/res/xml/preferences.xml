@@ -4,6 +4,12 @@
     <PreferenceCategory
         android:title="Handy Calculator">
 
+        <CheckBoxPreference
+            android:title="Allow Improper Fractions"
+            android:defaultValue="false"
+            android:summary="Allow up to three digits in numerator improper fractions during input"
+            android:key="@string/pref_allowImproper"/>
+
         <ListPreference
             android:key="@string/pref_remainderBase"
             android:title="Remainder Display Base"
