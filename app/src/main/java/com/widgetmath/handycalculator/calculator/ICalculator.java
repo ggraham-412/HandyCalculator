@@ -46,34 +46,6 @@ public interface ICalculator {
     DisplayMode getDisplayMode();
 
     /**
-     * Returns true if the accumulator is Not a Number
-     *
-     * @return : True if the accumulator is Not a Number
-     */
-    boolean isNAN();
-
-    /**
-     * Returns true if the accumulator is in Overflow
-     *
-     * @return : True if the accumulator is in Overflow
-     */
-    boolean isOE();
-
-    /**
-     * Returns true if the accumulator is in Underflow
-     *
-     * @return : True if the accumulator is in Underflow
-     */
-    boolean isUE();
-
-    /**
-     * Returns true if the calculator is in an error state.
-     *
-     * @return : True is any of NaN, OE, or UE is true.
-     */
-    boolean isNumericError();
-
-    /**
      * Clears the accumulator and entry.
      *
      * @param clearMem : If true, will clear the memory as well

@@ -13,6 +13,8 @@ import java.math.BigDecimal;
  */
 public final class DisplayEntry {
 
+    public static final String Overflow = "OE";
+    public static final String Underflow = "UE";
     /**
      * Gets a string representing the remainder of this number.
      * If the INumberEntry has a decoimal base, this always returns the empty string.
@@ -56,16 +58,37 @@ public final class DisplayEntry {
      * If the base is not decimal, then it returns the floor of the number with respect to
      * the fractional base if it is "off tick"
      *
-     * @param toDisplay : The number object to disply
+     * @param _toDisplay : The number object to disply
      * @param mode : The display mode (accumulator or entry)
      * @return
      */
-    public static String getMainDisplay(INumberEntry toDisplay, DisplayMode mode) {
+    public static String getMainDisplay(INumberEntry _toDisplay, DisplayMode mode, int maxdigits) {
+
+        INumberEntry toDisplay;
+        if ( _toDisplay.getBase() == 0 ) {
+            int len = _toDisplay.getIntegerPart().toPlainString().length() +
+                    _toDisplay.getFractionalPart().toPlainString().length();
+            if ( len > maxdigits ) {
+                int maxScale = maxdigits - _toDisplay.getIntegerPart().toPlainString().length();
+                BigDecimal value = _toDisplay.getValue();
+                value = value.setScale(Math.max(0,maxScale), BigDecimal.ROUND_HALF_EVEN);
+                toDisplay = new NumberEntry_Wrapper(value, _toDisplay.getBase());
+            }
+            else {
+                toDisplay = _toDisplay;
+            }
+        }
+        else {
+            toDisplay = _toDisplay;
+        }
+
         StringBuilder mainBuilder = new StringBuilder();
         if (toDisplay.isNegative()) {
             mainBuilder.append("-");
         }
-        mainBuilder.append(toDisplay.getIntegerPart().toPlainString());
+
+        String mainPart = toDisplay.getIntegerPart().toPlainString();
+        mainBuilder.append(mainPart);
         if (toDisplay.isDotPushed()) {
             int base = toDisplay.getBase();
             if (base > 0 &&

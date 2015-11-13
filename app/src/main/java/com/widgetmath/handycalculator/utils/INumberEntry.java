@@ -32,4 +32,34 @@ public interface INumberEntry {
     
     // Reset 
     void clear();
+
+    /**
+     * Returns true if it is Not a Number
+     *
+     * @return : True if it is Not a Number
+     */
+    boolean isNAN();
+    void setNAN(boolean isNan);
+
+    /**
+     * Returns true if it is overflow
+     *
+     * @return : True if it is overflow
+     */
+    boolean isOE();
+
+    /**
+     * Returns true if it is underflow
+     *
+     * @return : True if it is underflow
+     */
+    boolean isUE();
+
+    /**
+     * Returns true if this is a valid number
+     *
+     * @return : False if any of isNAN, isOE, or isUE are True
+     */
+    boolean isValid();
+
 }

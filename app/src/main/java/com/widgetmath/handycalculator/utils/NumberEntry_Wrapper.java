@@ -76,4 +76,28 @@ public class NumberEntry_Wrapper implements INumberEntry {
     public NumberEntry_Wrapper(BigDecimal val, int arg) {
         setValue(val, arg);
     }
+
+    @Override
+    public boolean isNAN() {
+        return m_impl.isNAN();
+    }
+    public void setNAN(boolean isNan) {
+        m_impl.setNAN(isNan);
+    }
+
+    @Override
+    public boolean isOE() {
+        return m_impl.isOE();
+    }
+
+    @Override
+    public boolean isUE() {
+        return m_impl.isUE();
+    }
+
+    @Override
+    public boolean isValid() {
+        return m_impl.isValid();
+    }
+
 }

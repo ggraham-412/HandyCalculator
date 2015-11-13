@@ -16,6 +16,8 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
 
     // Constants
     public static final int MAX_SCALE = 16;
+    public static final BigDecimal LARGEST = new BigDecimal("9999999999");
+    public static final BigDecimal SMALLEST = new BigDecimal("0.0000000001");
 
     // Additional State
     private BaseMode m_displayBase;  // The fractional display base
@@ -50,6 +52,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
     protected void setPendingOp(Object pendingOp) {
         m_pendingOp = (ButtonCode)pendingOp;
     }
+
 
     // State diagram implementation
 
@@ -139,7 +142,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
      */
     private void HandleNumberInput(ButtonCode code) {
         // If there is a numerical error, force the user to hit "C"
-        if ( isNumericError() ) return;
+        if ( !getAccumulator().isValid() ) return;
         // Add the digit to "Entry" and make sure the entry will be displayed
         getEntry().addDigit(code.getValue());
         setDisplayMode(DisplayMode.ENTRY);
@@ -152,7 +155,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
      */
     private void HandleOperator(ButtonCode code) {
         // If there is a numerical error, force the user to hit "C"
-        if ( isNumericError() ) return;
+        if ( !getAccumulator().isValid() ) return;
         // If the display mode is accumulator, assume the user intends to start
         // an operation with the accumulator value - load it into entry and go
         // into entry display mode
@@ -176,7 +179,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
      */
     private void HandlePendingOp() {
         // If there is a numerical error, force the user to hit "C"
-        if ( isNumericError() ) return;
+        if ( !getAccumulator().isValid() ) return;
 
         // Check if there is a pending op
         if ( getPendingOp() == ButtonCode.NULL ) {
@@ -203,7 +206,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
                     BigDecimal operand = getEntry().getValue();
                     // Check for div by zero
                     if ( operand.compareTo(BigDecimal.ZERO) == 0) {
-                        setNAN( true );  // causes isNumericError to be true
+                        getAccumulator().setNAN(true);  // causes isNumericError to be true
                     }
                     else {
                         getAccumulator().setValue(getAccumulator().getValue().divide(getEntry().getValue(),
@@ -226,7 +229,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
      */
     private void HandleChangeSign(ButtonCode code) {
         // If there is a numerical error, force the user to hit "C"
-        if ( isNumericError() ) return;
+        if ( !getAccumulator().isValid() ) return;
         if ( getDisplayMode() == DisplayMode.ACCUMULATOR ) {
             getAccumulator().negate();
         }
@@ -242,7 +245,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
      */
     private void HandleMemoryOp(ButtonCode code) {
         // If there is a numerical error, force the user to hit "C"
-        if ( isNumericError() ) return;
+        if ( !getAccumulator().isValid() ) return;
 
         switch (code){
             case MEMORY_RECALL:
@@ -272,13 +275,11 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
                 clear(false);
                 setPendingOp(ButtonCode.NULL);
                 setDisplayMode(DisplayMode.ACCUMULATOR);
-                setOE(false);
-                setUE(false);
-                setNAN(false);
+                getAccumulator().setNAN(false);
                 break;
             case CLEAR_ENTRY:
                 // If there is a numerical error, force the user to hit "C"
-                if ( isNumericError() ) return;
+                if ( !getAccumulator().isValid() ) return;
                 getEntry().clear();
                 if ( getDisplayMode() == DisplayMode.ACCUMULATOR ) {
                     getAccumulator().clear();
@@ -287,7 +288,7 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
                 break;
             case EQUALS:
                 // If there is a numerical error, force the user to hit "C"
-                if ( isNumericError() ) return;
+                if ( !getAccumulator().isValid() ) return;
                 if ( getPendingOp() != ButtonCode.NULL ) {
                     HandlePendingOp();
                     setDisplayMode(DisplayMode.ACCUMULATOR);
@@ -339,6 +340,9 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
             case DEC_THIRTYSECOND:
             case DEC_SIXTYFOURTH:
                 m_displayBase = BaseMode.getFracMode(code.getValue());
+                boolean isNan = getAccumulator().isNAN();
+                getAccumulator().setValue(getAccumulator().getValue(), m_displayBase.getBase());
+                getAccumulator().setNAN(isNan);
                 return true;
             case DISPLAY:
                 m_dispPending = false;

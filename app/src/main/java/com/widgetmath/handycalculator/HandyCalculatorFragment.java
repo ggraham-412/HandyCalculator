@@ -16,6 +16,7 @@ import com.widgetmath.handycalculator.handycalculator.HandyCalculator;
 import com.widgetmath.handycalculator.handycalculator.IHandyCalculator;
 import com.widgetmath.handycalculator.utils.DisplayEntry;
 import com.widgetmath.handycalculator.utils.INumberEntry;
+import com.widgetmath.handycalculator.utils.NumberEntry_Decimal;
 
 import java.math.BigDecimal;
 
@@ -174,7 +175,6 @@ public class HandyCalculatorFragment extends Fragment {
         INumberEntry toDisplay;
         if ( m_calculator.getDisplayMode() == DisplayMode.ACCUMULATOR ) {
             toDisplay = m_calculator.getAccumulator();
-            toDisplay.setValue(toDisplay.getValue(), m_calculator.getDisplayBase().getBase());
         }
         else {
             toDisplay = m_calculator.getEntry();
@@ -209,19 +209,19 @@ public class HandyCalculatorFragment extends Fragment {
      * @param toDisplay : The number to display
      */
     private void DisplayMainAndRemainder(INumberEntry toDisplay, boolean fracMode) {
-        if ( m_calculator.isNAN() ) {
+        if ( m_calculator.getAccumulator().isNAN() ) {
             DisplayError("NaN");
             return;
         }
-        if ( m_calculator.isOE() ) {
+        if ( m_calculator.getAccumulator().isOE() ) {
             DisplayError("OE");
             return;
         }
-        if ( m_calculator.isUE() ) {
+        if ( m_calculator.getAccumulator().isUE() ) {
             DisplayError("UE");
             return;
         }
-        m_txtDisplayMain.setText(DisplayEntry.getMainDisplay(toDisplay, m_calculator.getDisplayMode()));
+        m_txtDisplayMain.setText(DisplayEntry.getMainDisplay(toDisplay, m_calculator.getDisplayMode(), NumberEntry_Decimal.MAX_DIGIT));
         m_txtDisplayRemainder.setText(DisplayEntry.getRemainderDisplay(toDisplay,
                 m_calculator.getDisplayMode(),fracMode));
     }

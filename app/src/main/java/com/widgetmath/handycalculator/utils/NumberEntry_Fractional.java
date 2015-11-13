@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 public class NumberEntry_Fractional implements INumberEntry {
 
     public static final int MAX_SCALE = 16;
+    public static final int MAX_DIGIT = 10;
     public static final BigDecimal HALF = new BigDecimal("0.5");
 
     // State
@@ -28,6 +29,7 @@ public class NumberEntry_Fractional implements INumberEntry {
     private BigDecimal m_remainder; // Remainder   
     private boolean m_dotPushed;
     private boolean m_negative;
+    private boolean m_isNan;
 
     // Option to allow improper fractions
     private int m_improperMax = 0;
@@ -56,6 +58,7 @@ public class NumberEntry_Fractional implements INumberEntry {
             m_fvalue = tmp;
         } else {
             // Add to integer part
+            if ( m_ivalue.toPlainString().length() >= MAX_DIGIT ) return;
             if ( m_ivalue.compareTo(BigDecimal.ZERO) == 0 && digit == 0 ) return;
             m_ivalue = m_ivalue.multiply(BigDecimal.TEN).add(new BigDecimal(digit));
         }
@@ -138,6 +141,7 @@ public class NumberEntry_Fractional implements INumberEntry {
         m_dotPushed = false;
         m_negative = false;
         m_quantum = BigDecimal.ZERO;
+        m_isNan = false;
     }
 
 
@@ -149,4 +153,26 @@ public class NumberEntry_Fractional implements INumberEntry {
         setValue(dec, base);
     }
 
+    @Override
+    public boolean isNAN() {
+        return m_isNan;
+    }
+    public void setNAN(boolean isNan) {
+        m_isNan = isNan;
+    }
+
+    @Override
+    public boolean isOE() {
+        return getIntegerPart().toPlainString().length() > MAX_DIGIT;
+    }
+
+    @Override
+    public boolean isUE() {
+        return false;
+    }
+
+    @Override
+    public boolean isValid() {
+        return (!isNAN()) && (!isOE()) && (!isUE());
+    }
 }

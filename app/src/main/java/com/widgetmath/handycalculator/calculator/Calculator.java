@@ -18,9 +18,6 @@ public abstract class Calculator implements ICalculator {
 
     // State indicators
     private DisplayMode m_displayMode;
-    private boolean m_isNan;
-    private boolean m_isOE;
-    private boolean m_isUE;
 
     /**
      * Constructor
@@ -30,9 +27,6 @@ public abstract class Calculator implements ICalculator {
         m_numberEntry = new NumberEntry_Wrapper();
         m_memoryValue = new NumberEntry_Wrapper();
         m_displayMode = DisplayMode.ACCUMULATOR;
-        m_isNan = false;
-        m_isOE = false;
-        m_isUE =false;
     }
 
     @Override
@@ -40,11 +34,6 @@ public abstract class Calculator implements ICalculator {
         m_accumulator.clear();
         m_numberEntry.clear();
         if ( clearMem ) m_memoryValue.clear();
-    }
-
-    @Override
-    public boolean isNumericError() {
-        return isNAN() || isOE() || isUE();
     }
 
     @Override
@@ -68,30 +57,6 @@ public abstract class Calculator implements ICalculator {
     }
     protected void setDisplayMode(Object mode) {
         m_displayMode = (DisplayMode)mode;
-    }
-
-    @Override
-    public boolean isNAN() {
-        return m_isNan;
-    }
-    protected void setNAN(boolean isNan) {
-        m_isNan = isNan;
-    }
-
-    @Override
-    public boolean isOE() {
-        return m_isOE;
-    }
-    protected void setOE(boolean isOE) {
-        m_isOE = isOE;
-    }
-
-    @Override
-    public boolean isUE() {
-        return m_isUE;
-    }
-    protected void setUE(boolean isUE) {
-        m_isUE = isUE;
     }
 
     @Override

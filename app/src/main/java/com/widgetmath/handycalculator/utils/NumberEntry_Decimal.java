@@ -10,10 +10,13 @@ import java.math.BigDecimal;
  */
 public class NumberEntry_Decimal implements INumberEntry {
 
+    public static final int MAX_DIGIT = 10;
+
     // State
     private BigDecimal m_value;
     private boolean m_dotPushed;
     private boolean m_negative;
+    private boolean m_isNan;
 
     // Check and change sign
     public boolean isNegative() { return m_negative; }
@@ -31,12 +34,15 @@ public class NumberEntry_Decimal implements INumberEntry {
     public void addDigit(int digit) {
         if ( isDotPushed() ) {
             // Add to the right of the decimal
+            if ( (getIntegerPart().toPlainString().length() +
+                    getFractionalPart().toPlainString().length()) >= MAX_DIGIT ) return;
             int scale = m_value.scale() + 1;
             BigDecimal ftmp = new BigDecimal(digit);
             ftmp = ftmp.divide(BigDecimal.TEN.pow(scale), scale, BigDecimal.ROUND_HALF_EVEN);
             m_value = m_value.setScale(scale).add(ftmp);
         } else {
             // Add to the left of the decimal
+            if ( getIntegerPart().toPlainString().length() >= MAX_DIGIT ) return;
             m_value = m_value.multiply(BigDecimal.TEN).add(new BigDecimal(digit)).stripTrailingZeros();
         }
     }
@@ -84,6 +90,7 @@ public class NumberEntry_Decimal implements INumberEntry {
         m_value = BigDecimal.ZERO;
         m_dotPushed = false;
         m_negative = false;
+        m_isNan = false;
     }
 
     // Constructors
@@ -92,7 +99,31 @@ public class NumberEntry_Decimal implements INumberEntry {
     }
 
     public NumberEntry_Decimal(BigDecimal dec) {
-        setValue(dec,0);
+        setValue(dec, 0);
     }
 
+    @Override
+    public boolean isNAN() {
+        return m_isNan;
+    }
+    public void setNAN(boolean isNan) {
+        m_isNan = isNan;
+    }
+
+    @Override
+    public boolean isOE() {
+        return getIntegerPart().toPlainString().length() > MAX_DIGIT;
+    }
+
+    @Override
+    public boolean isUE() {
+        return getIntegerPart().compareTo(BigDecimal.ZERO) == 0 &&
+                getFractionalPart().compareTo(BigDecimal.ZERO) > 0 &&
+                m_value.scale() > MAX_DIGIT;
+    }
+
+    @Override
+    public boolean isValid() {
+        return (!isNAN()) && (!isOE()) && (!isUE());
+    }
 }
