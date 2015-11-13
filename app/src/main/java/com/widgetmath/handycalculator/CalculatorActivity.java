@@ -33,10 +33,23 @@ public class CalculatorActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i;
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
-                Intent i = new Intent(this, SettingsActivity.class);
+                i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
+                return true;
+
+            case R.id.action_help:
+                i = new Intent(this, WebActivity.class);
+                i.putExtra("URL", "help.html");
+                startActivity(i);
+                return true;
+
+            case R.id.action_about:
+                i = new Intent(this, WebActivity.class);
+                i.putExtra("URL", "about.html");
                 startActivity(i);
                 return true;
 
