@@ -117,8 +117,9 @@ public class NumberEntry_Decimal implements INumberEntry {
 
     @Override
     public boolean isUE() {
+        BigDecimal shmallest = BigDecimal.ONE.divide(BigDecimal.TEN.pow(MAX_DIGIT));
         return getIntegerPart().compareTo(BigDecimal.ZERO) == 0 &&
-                getFractionalPart().compareTo(BigDecimal.ZERO) > 0 &&
+                getValue().compareTo(shmallest) < 0 &&
                 m_value.scale() > MAX_DIGIT;
     }
 
