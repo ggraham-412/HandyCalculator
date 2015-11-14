@@ -17,6 +17,7 @@ public class WebActivity extends AppCompatActivity {
         WebView browser = (WebView)findViewById(R.id.webview);
         WebSettings settings = browser.getSettings();
         settings.setJavaScriptEnabled(false);
+        settings.setDefaultTextEncodingName("utf-8");
 
         Intent i = getIntent();
         String url = i.getExtras().getString("URL");

@@ -169,7 +169,6 @@ public class HandyCalculatorFragment extends Fragment {
         boolean bDebugMode = SP.getBoolean(getString(R.string.pref_debugMode), false);
         String sFracMode = SP.getString(getString(R.string.pref_remainderBase),
                                         getString(R.string.opt_remainderBase_useDecimal));
-        boolean bFracMode = sFracMode.equals(getString(R.string.opt_remainderBase_useDisplayBase));
 
         // Main Display and Remainder
         INumberEntry toDisplay;
@@ -179,7 +178,7 @@ public class HandyCalculatorFragment extends Fragment {
         else {
             toDisplay = m_calculator.getEntry();
         }
-        DisplayMainAndRemainder(toDisplay, bFracMode);
+        DisplayMainAndRemainder(toDisplay, sFracMode);
 
         // Mode indicators
         boolean isDisplayPending = m_calculator.isDisplayPending();
@@ -208,7 +207,7 @@ public class HandyCalculatorFragment extends Fragment {
      *
      * @param toDisplay : The number to display
      */
-    private void DisplayMainAndRemainder(INumberEntry toDisplay, boolean fracMode) {
+    private void DisplayMainAndRemainder(INumberEntry toDisplay, String fracMode) {
         if ( m_calculator.getAccumulator().isNAN() ) {
             DisplayError("NaN");
             return;
@@ -222,8 +221,14 @@ public class HandyCalculatorFragment extends Fragment {
             return;
         }
         m_txtDisplayMain.setText(DisplayEntry.getMainDisplay(toDisplay, m_calculator.getDisplayMode(), NumberEntry_Decimal.MAX_DIGIT));
-        m_txtDisplayRemainder.setText(DisplayEntry.getRemainderDisplay(toDisplay,
-                m_calculator.getDisplayMode(),fracMode));
+        if ( fracMode.equals(getString(R.string.opt_remainderBase_off))) {
+            m_txtDisplayRemainder.setText("");
+        }
+        else {
+            boolean bFracMode = fracMode.equals(getString(R.string.opt_remainderBase_useDisplayBase));
+            m_txtDisplayRemainder.setText(DisplayEntry.getRemainderDisplay(toDisplay,
+                    m_calculator.getDisplayMode(), bFracMode));
+        }
     }
 
     /**

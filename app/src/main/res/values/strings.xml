@@ -7,6 +7,7 @@
     <string name="pref_remainderBase">pref_remainderBase</string>
     <string name="opt_remainderBase_useDisplayBase">opt_remainderBase_useDisplayBase</string>
     <string name="opt_remainderBase_useDecimal">opt_remainderBase_useDecimal</string>
+    <string name="opt_remainderBase_off">opt_remainderBase_off</string>
 
     <string-array name="calculator_types">
         <item>Standard</item>
