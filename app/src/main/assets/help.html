@@ -1,19 +1,55 @@
+<html>
+<body>
+
 <h3>Handy Calculator</h3>
 <p>
     Congratulations on your purchase of HandyCalculator,
     the only calculator available in the Play Store with
     fractional input and display, ideal for both carpenters
-    and Eurodollar traders!
+    and Eurodollar futures traders!
 </p>
 
 <p>
     Handy Caluclator is a basic infix calculator with a
     single memory and a retro visual style that is reminiscent
-    of older digital calculators with bright plastic
+    of older digital calculators with bright plastic bakelite
     buttons and backlit LCD display.
 </p>
 
-<h4>Display</h4>
+<h4>Quick Start</h4>
+
+<p>
+    This calculator is mostly just like any common electronic
+    calculator with infix input.  The main difference is that in
+    addition to the decimal point (.) key, there are fraction keys
+    that allow you to quickly and naturally enter numbers in
+    fractional notation.
+</p>
+
+<p>
+    For example, to compute 6.7 plus 12.3, you would obviously
+    push keys in the sequence (6) (.) (7) (+) (1) (2) (.) (3) (=).
+</p>
+
+<p>
+    But say you wanted to compute 6 7/32 plus 12 3/4, you would instead
+    push keys in the sequence (6) (1/32) (7) (+) (1) (2) (1/4) (3) (=).
+</p>
+
+<p>
+    The results are still displayed as decimals.  But that can be changed
+    too by selecting a fraction for display, by pushing the (DISP) button
+    followed by one of the fraction choices.  When displaying fractions,
+    if a number does not fit exactly on a fraction boundary, a remainder
+    is displayed in the upper left corner.
+</p>
+
+<p>
+    That's probably going to cover 90% of the new functionality.  For more
+    information, please refer to one of the following reference guides.
+</p>
+
+<h4>Display Reference Guide</h4>
 
 <p>
     In addition to the main numeric output, there are four indicators
@@ -55,7 +91,7 @@
     remainder is equal to the exact value.
 </p>
 
-<h4>Basic Operations</h4>
+<h4>Operations Reference Guide</h4>
 
 <p>
     <b>Clear (C)</b> The clear button will set both the
@@ -72,38 +108,84 @@
 <p>
     <b>Memory (MR) and (MS)</b>  The mem store (MS)
     button will store the current accumulated result
-    in memory if it is currently being displayed
-    (in
+    or the current numeric entry in memory depending on
+    what is currently showing in the display.  The
+    mem recall button will copy the current value from
+    memory into the current numeric entry as if the
+    user just entered it.
 </p>
 
 <p>
-    <b></b>
+    <b>Number Keys</b>  The number keys (0-9) will add a digit
+    to the current numeric entry.  If the calculator is
+    currently displaying a result (ACC), the number key will
+    first transition to data entry mode (ENT).
 </p>
 
 <p>
-    <b></b>
+    <b>Operation keys</b> The operation keys (+, -, X, &#00F7;)
+    will cause the display to show the current accumulated
+    result (ACC) and will store the selected operation as a
+    pending operation, awaiting the entry of a second operand.
 </p>
 
 <p>
-    <b></b>
+    <b>Equals</b> The Equals (=) key will cause the current
+    pending operation to be evaluated using the current
+    numeric entry as the second operand.
 </p>
 
 <p>
-    <b></b>
+    <b>Change Sign</b> The change sign (+/-) key will cause the
+    current value of the accumulator or the numeric entry to be
+    replaced with its negative, depending on which value
+    is currently being shown.
 </p>
 
 <p>
-    <b></b>
+    <b>Decimal/Fraction Keys</b>
+    The decimal and fraction keys are special in that they affect
+    numeric input.  For a number in decimal notation, the decimal
+    point signals that entry to the left of the decimal point is
+    finished, and further digits are to be appended to the right
+    of the decimal point.  For a number in fractional notation,
+    the sequence is similar.  A fraction button also signals that
+    entry to the left of the decimal point is finished, but further
+    digits are added to the numerator of a fraction with the
+    selected base.
 </p>
 
 <p>
-    <b></b>
+    <b>Display Key</b> The display key (DISP) is used to select the
+    fractional base to be used when displaying the current accumulated
+    result.  When the (DISP) key is pushed, the user must enter a
+    fraction/decimal choice for the display, or must push (DISP)
+    again to cancel.  When a new display fraction is selected,
+    the choice will be displayed in the associated indicator.  If
+    the current accumulated numeric value doesn't fit exactly in the
+    selected fraction base, then a remainder will be displayed.
+    (See above.)
+</p>
+
+<h4>Options</h4>
+
+<p>
+    <b>Allow Improper Fractions</b>  If selected, the user can input up to three
+    digits of numerator in fractional input even if the fraction is improper.
+    The entered fraction is rendered proper as soon as input is finished.
+    Otherwise, the user cannot enter improper fractions.
 </p>
 
 <p>
-    <b></b>
+    <b>Remainder Display Mode</b>  The remainder can be displayed as an exact decimal,
+    or it can be displayed in the same fractional base currently used for the display,
+    or it can be turned off completely.
 </p>
 
 <p>
-    <b></b>
+    <b>Debug Mode</b>  When selected, the actual values of numeric entry and
+    the acculumator are displayed beneath the calculator.
 </p>
+
+</body>
+</html>
