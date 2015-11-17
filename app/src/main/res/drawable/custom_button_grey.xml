@@ -12,10 +12,10 @@
             <corners
                 android:radius="3dp" />
             <padding
-                android:left="10dp"
-                android:top="10dp"
-                android:right="10dp"
-                android:bottom="10dp" />
+                android:left="@dimen/buttonHorizPadding"
+                android:top="@dimen/buttonVertPadding"
+                android:right="@dimen/buttonHorizPadding"
+                android:bottom="@dimen/buttonVertPadding" />
         </shape>
     </item>
 
@@ -31,10 +31,10 @@
             <corners
                 android:radius="3dp" />
             <padding
-                android:left="10dp"
-                android:top="10dp"
-                android:right="10dp"
-                android:bottom="10dp" />
+                android:left="@dimen/buttonHorizPadding"
+                android:top="@dimen/buttonVertPadding"
+                android:right="@dimen/buttonHorizPadding"
+                android:bottom="@dimen/buttonVertPadding" />
         </shape>
     </item>
 
@@ -50,10 +50,10 @@
             <corners
                 android:radius="3dp" />
             <padding
-                android:left="10dp"
-                android:top="10dp"
-                android:right="10dp"
-                android:bottom="10dp" />
+                android:left="@dimen/buttonHorizPadding"
+                android:top="@dimen/buttonVertPadding"
+                android:right="@dimen/buttonHorizPadding"
+                android:bottom="@dimen/buttonVertPadding" />
         </shape>
     </item>
 
@@ -69,10 +69,10 @@
             <corners
                 android:radius="3dp" />
             <padding
-                android:left="10dp"
-                android:top="10dp"
-                android:right="10dp"
-                android:bottom="10dp" />
+                android:left="@dimen/buttonHorizPadding"
+                android:top="@dimen/buttonVertPadding"
+                android:right="@dimen/buttonHorizPadding"
+                android:bottom="@dimen/buttonVertPadding" />
         </shape>
     </item>
 

@@ -15,6 +15,7 @@
 
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/Black0</item>
+        <item name="android:actionBarSize">10dp</item>
     </style>
 
     <!-- Style for indicator text at top of output display -->
@@ -23,13 +24,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginRight">5dp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">@dimen/infoTextSize</item>
     </style>
 
     <!-- Style for button row -->
     <style name="HandyCalculatorButtonRowStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">14</item>
         <item name="android:weightSum">100</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
@@ -38,11 +40,11 @@
     <!-- Style for buttons -->
     <style name="HandyCalculatorButtonStyle">
         <item name="android:layout_weight">25</item>
-        <item name="android:layout_margin">2dp</item>
+        <item name="android:layout_margin">@dimen/button_layout_margin</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">@dimen/buttonTextSize</item>
     </style>
 
     <!-- Button styles - trying to be like faded bakelite plastic from the 1970's -->

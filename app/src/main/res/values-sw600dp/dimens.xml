@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="buttonHorizPadding">12dp</dimen>
+    <dimen name="buttonVertPadding">12dp</dimen>
+    <dimen name="buttonTextSize">30dp</dimen>
+    <dimen name="displayTextSize">60dp</dimen>
+    <dimen name="infoTextSize">25dp</dimen>
+    <dimen name="activity_horizontal_margin">10dp</dimen>
+    <dimen name="activity_vertical_margin">10dp</dimen>
+    <dimen name="button_layout_margin">2dp</dimen>
+</resources>
