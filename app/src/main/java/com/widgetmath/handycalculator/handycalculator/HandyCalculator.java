@@ -2,6 +2,7 @@ package com.widgetmath.handycalculator.handycalculator;
 
 import com.widgetmath.handycalculator.calculator.Calculator;
 import com.widgetmath.handycalculator.utils.DisplayMode;
+import com.widgetmath.handycalculator.utils.INumberEntry;
 
 import java.math.BigDecimal;
 
@@ -98,13 +99,17 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
             case SUBTRACT:
             case MULTIPLY:
             case DIVIDE:
+            case QUADR_ADD:
+            case QUADR_SUB:
                 // Handle operations
                 HandleOperator(code);
                 break;
 
             case CHANGE_SIGN:
+            case SQUARE:
+            case SQRT:
                 // This is a simple unary transform
-                HandleChangeSign(code);
+                HandleTransform(code);
                 break;
 
             case MEMORY_RECALL:
@@ -190,6 +195,24 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
         } else {
             // If there is a pending op, complete it and store results in the accumulator
             switch (getPendingOp()) {
+                case QUADR_SUB:
+                    double dAcc1 = getAccumulator().getValue().doubleValue();
+                    double eAcc1 = getEntry().getValue().doubleValue();
+                    double quadr = dAcc1 * dAcc1 - eAcc1 * eAcc1;
+                    if ( quadr < 0 ) {
+                        getAccumulator().setNAN(true);  // causes isNumericError to be true
+                    }
+                    else {
+                        double result1 = Math.sqrt(quadr);
+                        getAccumulator().setValue(new BigDecimal(result1), m_displayBase.getBase());
+                    }
+                    break;
+                case QUADR_ADD:
+                    double dAcc2 = getAccumulator().getValue().doubleValue();
+                    double eAcc2 = getEntry().getValue().doubleValue();
+                    double result2 = Math.sqrt(dAcc2 * dAcc2 + eAcc2 * eAcc2);
+                    getAccumulator().setValue(new BigDecimal(result2), m_displayBase.getBase());
+                    break;
                 case ADD:
                     getAccumulator().setValue(getAccumulator().getValue().add(getEntry().getValue()),
                             m_displayBase.getBase());
@@ -227,14 +250,27 @@ public class HandyCalculator extends Calculator implements IHandyCalculator {
      *
      * @param code : Should be he change sign button code
      */
-    private void HandleChangeSign(ButtonCode code) {
+    private void HandleTransform(ButtonCode code) {
         // If there is a numerical error, force the user to hit "C"
+
         if ( !getAccumulator().isValid() ) return;
-        if ( getDisplayMode() == DisplayMode.ACCUMULATOR ) {
-            getAccumulator().negate();
-        }
-        else {
-            getEntry().negate();
+        INumberEntry number = ( getDisplayMode() == DisplayMode.ACCUMULATOR ) ?
+            getAccumulator(): getEntry();
+
+        switch (code) {
+            case CHANGE_SIGN:
+                number.negate();
+                break;
+            case SQUARE:
+                BigDecimal value = number.getValue();
+                value = value.multiply(value);
+                number.setValue(value, number.getBase());
+                break;
+            case SQRT:
+                double dvalue = number.getValue().doubleValue();
+                dvalue = Math.sqrt(dvalue);
+                number.setValue(new BigDecimal(dvalue), number.getBase());
+                break;
         }
     }
 

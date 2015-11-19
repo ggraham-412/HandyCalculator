@@ -34,12 +34,16 @@ public enum ButtonCode {
 
     // Transforms
     CHANGE_SIGN(-1),
+    SQUARE(-1),
+    SQRT(-1),
 
     // Operators
     ADD(0,"+"),
     SUBTRACT(0,"-"),
     MULTIPLY(0,"X"),
     DIVIDE(0,"/"),
+    QUADR_ADD(0,"Q+"),
+    QUADR_SUB(0,"Q-"),
 
     // Decimators
     DEC_DECIMAL(0),

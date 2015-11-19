@@ -57,6 +57,10 @@ public class HandyCalculatorFragment extends Fragment {
     private Button m_buttonDotDisp;
     private Button m_buttonMS;
     private Button m_buttonMR;
+    private Button m_buttonQA;
+    private Button m_buttonQS;
+    private Button m_buttonSQ;
+    private Button m_buttonSQRT;
 
     // UI Output Elements
     private TextView m_txtDisplayMain;
@@ -109,6 +113,10 @@ public class HandyCalculatorFragment extends Fragment {
         m_buttonDotDisp = initButton(R.id.btnDisp, ButtonCode.DISPLAY);
         m_buttonMR = initButton(R.id.btnMR, ButtonCode.MEMORY_RECALL);
         m_buttonMS = initButton(R.id.btnMS, ButtonCode.MEMORY_SAVE);
+        m_buttonQA = initButton(R.id.btnQuadAdd, ButtonCode.QUADR_ADD);
+        m_buttonQS = initButton(R.id.btnQuadSub, ButtonCode.QUADR_SUB);
+        m_buttonSQ = initButton(R.id.btnSquare, ButtonCode.SQUARE);
+        m_buttonSQRT = initButton(R.id.btnSqrt, ButtonCode.SQRT);
 
         m_txtDisplayMain = (TextView) (m_mainView.findViewById(R.id.txtDisplayMain));
         m_txtDisplayMode = (TextView) (m_mainView.findViewById(R.id.txtMode));

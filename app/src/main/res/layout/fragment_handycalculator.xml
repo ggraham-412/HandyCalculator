@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:weightSum="98">
+        android:weightSum="96">
 
 
         <LinearLayout
@@ -200,6 +200,31 @@
                 android:id="@+id/btnPlu"
                 style="@style/HandyCalculatorButtonStyle_Ops"
                 android:text="+" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/HandyCalculatorButtonRowStyle" >
+
+            <Button
+                android:id="@+id/btnSquare"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="X^2" />
+
+            <Button
+                android:id="@+id/btnSqrt"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="SQT" />
+
+            <Button
+                android:id="@+id/btnQuadAdd"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="Q+" />
+
+            <Button
+                android:id="@+id/btnQuadSub"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="Q-" />
 
         </LinearLayout>
 
