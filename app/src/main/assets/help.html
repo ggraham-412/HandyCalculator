@@ -27,13 +27,27 @@
 </p>
 
 <p>
-    For example, to compute 6.7 plus 12.3, you would obviously
+    For example, to compute 6.7 plus 12.3, you would normally
     push keys in the sequence (6) (.) (7) (+) (1) (2) (.) (3) (=).
 </p>
 
 <p>
     But say you wanted to compute 6 7/32 plus 12 3/4, you would instead
     push keys in the sequence (6) (1/32) (7) (+) (1) (2) (1/4) (3) (=).
+</p>
+
+<p>
+    Say you wanted to compute the diagonal of a rectangle with sides
+    6 7/32" and 12 3/4", you would use the convenient quadrature
+    addition operation:
+    push keys in the sequence (6) (1/32) (7) (Q+) (1) (2) (1/4) (3) (=).
+</p>
+
+<p>
+    Say you knew the diagonal and one side, and wanted to compute the
+    missing side of a rectangle.  You would use the convenient quadrature
+    subtraction operation:
+    push keys in the sequence (14) (1/32) (6) (Q-) (1) (2) (1/4) (3) (=).
 </p>
 
 <p>
@@ -78,7 +92,7 @@
 
 <p>
     <b>Pending Operation</b> When the user pushes one of
-    the four available operations (+, -, X, &#00F7; ) it
+    the four available operations (+, -, X, &#0247; ) it
     will be displayed as a pending op until the user
     enters the second operand.
 </p>
@@ -116,6 +130,38 @@
 </p>
 
 <p>
+    <b>Square Button (X^2)</b> The square button will
+    set the current entry or the current accumulated
+    result to its square and leave pending operations
+    alone.
+</p>
+
+<p>
+    <b>Square Root Button (&#8730;)</b> The square root
+    button will set the current entry or the current
+    accumulated result to its square root and leave
+    pending operations alone.
+</p>
+
+<p>
+    <b>Quadrature Add (Q+)</b> The quadrature add
+    will cause the display to show the current accumulated
+    result (ACC) and will store the selected operation as a
+    pending operation, awaiting the entry of a second operand.
+    The operation is addition in quadrature: sqrt(op1**2 + op2**2)
+</p>
+
+<p>
+    <b>Quadrature Sub (Q-)</b> The quadrature subtract
+    will cause the display to show the current accumulated
+    result (ACC) and will store the selected operation as a
+    pending operation, awaiting the entry of a second operand.
+    The operation is subtraction in quadrature: sqrt(op1**2 - op2**2)
+    (If the result is taking the sqrt of a negative number,
+    NaN will be displayed.)
+</p>
+
+<p>
     <b>Number Keys</b>  The number keys (0-9) will add a digit
     to the current numeric entry.  If the calculator is
     currently displaying a result (ACC), the number key will
@@ -123,7 +169,7 @@
 </p>
 
 <p>
-    <b>Operation keys</b> The operation keys (+, -, X, &#00F7;)
+    <b>Operation keys</b> The operation keys (+, -, X, &#0247;)
     will cause the display to show the current accumulated
     result (ACC) and will store the selected operation as a
     pending operation, awaiting the entry of a second operand.

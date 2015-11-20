@@ -107,6 +107,31 @@
             style="@style/HandyCalculatorButtonRowStyle" >
 
             <Button
+                android:id="@+id/btnSquare"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="X^2" />
+
+            <Button
+                android:id="@+id/btnSqrt"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="\u221A" />
+
+            <Button
+                android:id="@+id/btnQuadAdd"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="Q+" />
+
+            <Button
+                android:id="@+id/btnQuadSub"
+                style="@style/HandyCalculatorButtonStyle_Ops"
+                android:text="Q-" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/HandyCalculatorButtonRowStyle" >
+
+            <Button
                 android:id="@+id/btn7"
                 style="@style/HandyCalculatorButtonStyle_Ordinary"
                 android:text="7" />
@@ -200,31 +225,6 @@
                 android:id="@+id/btnPlu"
                 style="@style/HandyCalculatorButtonStyle_Ops"
                 android:text="+" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/HandyCalculatorButtonRowStyle" >
-
-            <Button
-                android:id="@+id/btnSquare"
-                style="@style/HandyCalculatorButtonStyle_Ops"
-                android:text="X^2" />
-
-            <Button
-                android:id="@+id/btnSqrt"
-                style="@style/HandyCalculatorButtonStyle_Ops"
-                android:text="SQT" />
-
-            <Button
-                android:id="@+id/btnQuadAdd"
-                style="@style/HandyCalculatorButtonStyle_Ops"
-                android:text="Q+" />
-
-            <Button
-                android:id="@+id/btnQuadSub"
-                style="@style/HandyCalculatorButtonStyle_Ops"
-                android:text="Q-" />
 
         </LinearLayout>
 

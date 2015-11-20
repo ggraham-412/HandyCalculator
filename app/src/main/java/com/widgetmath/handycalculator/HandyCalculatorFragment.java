@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -204,8 +205,8 @@ public class HandyCalculatorFragment extends Fragment {
 
         // Debug Modes
         m_debugView.setVisibility(bDebugMode ? View.VISIBLE : View.INVISIBLE);
-        m_txtAccum.setText(m_calculator.getAccumulator().getValue().toPlainString());
-        m_txtEntry.setText(m_calculator.getEntry().getValue().toPlainString());
+        m_txtAccum.setText(m_calculator.getAccumulator().getValue().setScale(HandyCalculator.MAX_SCALE, BigDecimal.ROUND_HALF_EVEN).toPlainString());
+        m_txtEntry.setText(m_calculator.getEntry().getValue().setScale(HandyCalculator.MAX_SCALE, BigDecimal.ROUND_HALF_EVEN).toPlainString());
 
         return;
     }
